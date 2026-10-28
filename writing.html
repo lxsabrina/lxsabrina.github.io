@@ -1,0 +1,26 @@
+---
+layout: default
+title: 文章
+permalink: /writing/
+description: 张弦的技术文章：大模型推理、LLM Agent、搜索推荐。
+---
+<section class="wrap page">
+  <header class="page-head">
+    <h1 class="page-title">文章</h1>
+    <p class="page-sub">大模型推理、LLM Agent 与搜索推荐的技术笔记。</p>
+  </header>
+  {% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+  {% for year in by_year %}
+  <h2 class="year">{{ year.name }}</h2>
+  <ul class="post-list">
+    {% for post in year.items %}
+    <li>
+      <a href="{{ post.url | relative_url }}">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-m 月 %-d 日" }}</time>
+        <span><span class="t">{{ post.title }}</span>{% if post.subtitle %}<span class="s">{{ post.subtitle }}</span>{% endif %}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</section>

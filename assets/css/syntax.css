@@ -1,0 +1,15 @@
+.highlight .c, .highlight .c1, .highlight .cm { color: #7A8590; font-style: italic; }
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kc { color: #8250DF; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sd { color: #0F6E56; }
+.highlight .mi, .highlight .mf, .highlight .m { color: #B35900; }
+.highlight .nf, .highlight .fm { color: #1F5FBF; }
+.highlight .nc { color: #B35900; }
+.highlight .o, .highlight .ow { color: #5A6573; }
+@media (prefers-color-scheme: dark) {
+  .highlight .c, .highlight .c1, .highlight .cm { color: #8894A0; }
+  .highlight .k, .highlight .kd, .highlight .kn, .highlight .kc { color: #C3A6FF; }
+  .highlight .s, .highlight .s1, .highlight .s2, .highlight .sd { color: #5DCAA5; }
+  .highlight .mi, .highlight .mf, .highlight .m, .highlight .nc { color: #F2B45C; }
+  .highlight .nf, .highlight .fm { color: #85B7EB; }
+  .highlight .o, .highlight .ow { color: #9AA6B2; }
+}

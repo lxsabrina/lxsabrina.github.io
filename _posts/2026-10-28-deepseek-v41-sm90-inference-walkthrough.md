@@ -3,9 +3,7 @@ layout:     post
 title:      从 SM100 到 SM90：DeepSeek-V4.1 推理栈逐层拆解
 subtitle:   A Technical Walkthrough —— 张量核心、FP4、在线 Softmax、FlashMLA 与 MoE
 date:       2026-10-28
-author:     ZhangXian
-header-img: img/post-bg-hacker.jpg
-catalog: true
+author:     张弦
 tags:
     - 大模型推理
     - 注意力机制
