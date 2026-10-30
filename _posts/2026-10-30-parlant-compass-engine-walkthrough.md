@@ -61,7 +61,7 @@ Parlant 是一个面向客户对话的 Agent 行为控制框架。它的新文�
 - policy 有三种写法：policy document（一页手册）、procedure（编号步骤，近似 SOP）、steering guideline（一句话微调）。
 - 一个 procedure 建议整体写成一条 policy，不要拆成"当 X 时问订单号"这类碎片。
 
-我的解读（不是官方原话）：policy 这个词把 SOP、手册和一句话规则放进同一套匹配和管理机制，让它们能互相建立优先级和依赖。代码里这一点有对应：policy 和 observation 是同一个 `Rule` dataclass。
+代码里与此对应的事实是：policy 和 observation 是同一个 `Rule` dataclass，区别只是有没有 `condition`。
 
 ---
 
@@ -178,13 +178,16 @@ questions = { rule_id: Proposition(
 
 ---
 
-## 5. 读后的几点判断
+## 5. 代码里的限制与前提
 
-这些是我的判断，不是代码里的事实。
+下面每一条都能在 `compass-wip` 的代码或注释里找到依据。
 
-- **值得借鉴的设计**：用统一的 Rule 承载不同粒度的行为描述；把"要不要判断、用什么判断"分成档位，只在必要时付模型的钱；把"这条规则适不适用"改写成判断题，用决策模型一次批量作答。
-- **需要留意的代价**：每轮仍有多次模型请求，成本压得下来依赖缓存命中，也就是提示词前缀要字节级稳定；自托管推理时要确认引擎支持前缀缓存。
-- **风险**：这是 WIP 分支，文档站已经在讲的 API 和代码、发布包之间有落差；`Effort.MIN` 下高风险工具缺少复核，用在要求严格确认的场景时需要自己补。
+- **未发布**：新概念只在 `compass-wip` 分支的一次 WIP 提交里，PyPI 3.3.2 的 `sdk.py` 没有 `create_policy`。
+- **缓存前提**：排序器和响应循环的预热依赖提示词前缀在各轮之间字节级一致，每轮变化的内容放在 `# CURRENT TURN` 这个缓存断点之后（`rule_ranker.py`）。
+- **预热有门槛**：扇出规模 ≥ 5 才预热（`optimization_policy.py`），因为预热本身是一次请求，缓存写入比普通输入贵。
+- **Effort.MIN 不做复核**：此档位下 tool review 一律跳过，`consequential` 工具只剩提示词层面的确认要求（`loop/base_loop.py`）。
+- **批量判决依赖配置**：只有 effort 为 MIN、LOW、MEDIUM 且路由里配置了 decision 模型时才走 Jev 批量判决，否则回到逐条打分（`rule_ranker.py`）。
+- **默认模型是代码里的字符串**：OpenRouter 路径下排序用 `openai/gpt-oss-20b:nitro`，判决用 `~typesafe/jev-latest`（`adapters/nlp/openrouter_service.py`）。
 
 ---
 
