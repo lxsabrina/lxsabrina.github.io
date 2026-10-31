@@ -1,6 +1,8 @@
 ---
 title:      Parlant 的新方向：从 guideline 到统一 Rule，Compass 引擎源码解读
 subtitle:   Rule 抽象 · 三档匹配 · Jev 批量判决 · 加速手段
+title_en:   "Parlant's New Direction: From Guidelines to Unified Rules, a Walkthrough of the Compass Engine Source"
+subtitle_en: "Rule abstraction · three-tier matching · batched Jev verdicts · speed-ups"
 date:       2026-10-30 11:45:00 +0800
 author:     张弦
 tags:

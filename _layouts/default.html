@@ -1,14 +1,16 @@
-<!doctype html>
-<html lang="{{ site.lang | default: 'zh-CN' }}">
+{% assign en = false %}{% if page.lang == 'en' %}{% assign en = true %}{% endif %}<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'zh-CN' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% if page.title %}{% assign page_title = page.title | append: ' | ' | append: site.title %}{% else %}{% assign page_title = site.title | append: ' | AI 算法专家' %}{% endif %}
+  {% assign site_title = page.site_title | default: site.title %}
+  {% assign tagline = page.tagline | default: 'AI 算法专家' %}
+  {% if page.title %}{% assign page_title = page.title | append: ' | ' | append: site_title %}{% else %}{% assign page_title = site_title | append: ' | ' | append: tagline %}{% endif %}
   <title>{{ page_title }}</title>
   {% assign desc = page.description | default: page.subtitle | default: site.description %}
   <meta name="description" content="{{ desc | strip_html | strip_newlines | escape }}">
-  <meta name="author" content="{{ site.author }}">
-  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+  <meta name="author" content="{{ page.site_title | default: site.author }}">
+  <meta property="og:title" content="{{ page.title | default: site_title | escape }}">
   <meta property="og:description" content="{{ desc | strip_html | strip_newlines | escape }}">
   <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
@@ -22,13 +24,13 @@
   <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
 </head>
 <body class="{% if page.layout == 'post' %}is-post{% endif %}">
-  <a class="skip" href="#main">跳到正文</a>
+  <a class="skip" href="#main">{% if en %}Skip to content{% else %}跳到正文{% endif %}</a>
   <header class="site-header">
     <div class="wrap header-row">
-      <a class="site-name" href="{{ '/' | relative_url }}">张弦<span class="site-name-en">Zhang Xian</span></a>
-      <nav class="site-nav" aria-label="主导航">
-        <a href="{{ '/writing/' | relative_url }}"{% if page.url contains '/writing/' or page.layout == 'post' %} aria-current="page"{% endif %}>文章</a>
-        <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about/' %} aria-current="page"{% endif %}>关于</a>
+      <a class="site-name" href="{{ '/' | relative_url }}">{% if en %}Zhang Xian<span class="site-name-en">张弦</span>{% else %}张弦<span class="site-name-en">Zhang Xian</span>{% endif %}</a>
+      <nav class="site-nav" aria-label="{% if en %}Main navigation{% else %}主导航{% endif %}">
+        <a href="{{ '/writing/' | relative_url }}"{% if page.url contains '/writing/' or page.layout == 'post' %} aria-current="page"{% endif %}>{% if en %}Writing{% else %}文章{% endif %}</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about/' %} aria-current="page"{% endif %}>{% if en %}About{% else %}关于{% endif %}</a>
         <a href="https://github.com/{{ site.github_username }}">GitHub</a>
       </nav>
     </div>
@@ -40,7 +42,7 @@
 
   <footer class="site-footer">
     <div class="wrap footer-row">
-      <p>张弦，北京</p>
+      <p>{% if en %}Zhang Xian, Beijing{% else %}张弦，北京{% endif %}</p>
       <p>
         <a href="mailto:{{ site.email }}">{{ site.email }}</a>
         <span class="sep" aria-hidden="true">/</span>

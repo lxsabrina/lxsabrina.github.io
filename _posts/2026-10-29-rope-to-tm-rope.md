@@ -1,6 +1,8 @@
 ---
 title:      从第一原理推导 RoPE，再到 Qwen-Omni 的 TM-RoPE
 subtitle:   旋转、相对位置、手算验证与 PyTorch 实现
+title_en:   "Deriving RoPE from First Principles, Then on to Qwen-Omni's TM-RoPE"
+subtitle_en: "Rotation, relative position, hand-checked examples and a PyTorch implementation"
 date:       2026-10-29 10:30:00 +0800
 author:     张弦
 tags:

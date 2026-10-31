@@ -1,88 +1,91 @@
 ---
 layout: default
-description: 张弦，AI 算法专家。十五年搜索、广告、推荐算法经验，现在做 LLM Agent 与实时语音智能体。
+lang: en
+site_title: Zhang Xian
+tagline: AI Algorithm Expert
+description: Zhang Xian, AI algorithm expert. Fifteen years in search, advertising and recommendation; now working on LLM agents and real-time voice agents.
 ---
 <section class="wrap hero">
-  <svg class="attn" viewBox="0 0 720 140" role="img" aria-label="一句电销开场白被拆成 token，最后一个字“吗”向前面的词画出粗细不同的注意力弧线，“方便”最粗">
-    <path pathLength="1" d="M590 104 Q320 -2 50 104" stroke-width="1.6" stroke-opacity="0.45"/>
+  <svg class="attn" viewBox="0 0 720 140" role="img" aria-label="A telesales opener, “Is now a good time?”, is split into tokens. The final “?” draws attention arcs of different thickness back to the earlier words; the arc to “good” is the thickest">
+    <path pathLength="1" d="M590 104 Q320 -2 50 104" stroke-width="2.2" stroke-opacity="0.54"/>
     <path pathLength="1" d="M590 104 Q375 15 160 104" stroke-width="3.0" stroke-opacity="0.68"/>
-    <path pathLength="1" d="M590 104 Q430 33 270 104" stroke-width="2.2" stroke-opacity="0.54"/>
+    <path pathLength="1" d="M590 104 Q430 33 270 104" stroke-width="1.6" stroke-opacity="0.45"/>
     <path pathLength="1" d="M590 104 Q485 50 380 104" stroke-width="4.8" stroke-opacity="0.97"/>
     <path pathLength="1" d="M590 104 Q540 68 490 104" stroke-width="3.8" stroke-opacity="0.80"/>
-    <text x="50" y="132" text-anchor="middle">您好</text>
-    <text x="160" y="132" text-anchor="middle">请问</text>
-    <text x="270" y="132" text-anchor="middle">现在</text>
-    <text x="380" y="132" text-anchor="middle">方便</text>
-    <text x="490" y="132" text-anchor="middle">通话</text>
-    <text class="q" x="590" y="132" text-anchor="middle">吗</text>
-    <text class="q-mark" x="616" y="132" text-anchor="middle">？</text>
+    <text x="50" y="132" text-anchor="middle">Is</text>
+    <text x="160" y="132" text-anchor="middle">now</text>
+    <text x="270" y="132" text-anchor="middle">a</text>
+    <text x="380" y="132" text-anchor="middle">good</text>
+    <text x="490" y="132" text-anchor="middle">time</text>
+    <text class="q q-mark" x="590" y="132" text-anchor="middle">?</text>
   </svg>
-  <h1>十五年搜广推，现在做实时语音智能体</h1>
-  <p class="lead">我是张弦，北京的 AI 算法专家。做了十几年<strong>搜索、广告与推荐算法</strong>；2025 年起转向 <strong>LLM Agent</strong>，负责全双工语音智能体的对话引擎、决策模型和推理性能。</p>
+  <h1>Fifteen years in search, ads and recommendation. Now building real-time voice agents.</h1>
+  <p class="lead">I'm Zhang Xian, an AI algorithm expert based in Beijing. I spent more than a decade on <strong>search, advertising and recommendation algorithms</strong>; since 2025 I have moved to <strong>LLM agents</strong>, working on the dialogue engine, decision models and inference performance of full-duplex voice agents.</p>
   <div class="actions">
     {% assign latest = site.posts.first %}
-    {% if latest %}<a class="btn btn-solid" href="{{ latest.url | relative_url }}">读最新文章</a>{% endif %}
-    <a class="btn btn-line" href="mailto:{{ site.email }}">发邮件联系</a>
+    {% if latest %}<a class="btn btn-solid" href="{{ latest.url | relative_url }}">Read the latest article</a>{% endif %}
+    <a class="btn btn-line" href="mailto:{{ site.email }}">Get in touch</a>
   </div>
 </section>
 
 <section class="wrap block" aria-labelledby="focus-h">
-  <h2 id="focus-h">我在做什么</h2>
-  <p class="block-note">从排序模型到对话智能体，关心的始终是同一件事：在真实的延迟和成本约束下，让模型做出对的决策。</p>
+  <h2 id="focus-h">What I work on</h2>
+  <p class="block-note">From ranking models to conversational agents, the question stays the same: making the right decision under real latency and cost constraints.</p>
   <dl class="focus">
     <div class="focus-row">
-      <dt>实时语音智能体</dt>
-      <dd>全双工语音对话引擎：语义打断与重叠语音处理，SOP 驱动的流程编排，在<strong>亚秒级端到端延迟</strong>下完成外呼销售与客服对话。</dd>
+      <dt>Real-time voice agents</dt>
+      <dd>A full-duplex voice dialogue engine: semantic barge-in and overlapping-speech handling, SOP-driven flow orchestration, and outbound sales and customer-service conversations at <strong>sub-second end-to-end latency</strong>.</dd>
     </div>
     <div class="focus-row">
-      <dt>LLM 决策与规则选择</dt>
-      <dd>把流程节点和业务规则的选择转化为判断题，用轻量模型做选择器、再生成回复；与通用 Agent 框架相比，<strong>质量相当，token 与延迟大幅下降</strong>。</dd>
+      <dt>LLM decisions and rule selection</dt>
+      <dd>Recasting the choice of flow node and business rule as a judgment question: a lightweight model acts as the selector, then the reply is generated. Compared with general-purpose agent frameworks, <strong>quality is on par while token usage and latency drop sharply</strong>.</dd>
     </div>
     <div class="focus-row">
-      <dt>推理性能与容量规划</dt>
-      <dd>H20、H200 上的并发、P95 与 prefill 争用分析，负载均衡与容量测算；从张量核心、在线 softmax 到 MoE 通信的推理栈理解。</dd>
+      <dt>Inference performance and capacity planning</dt>
+      <dd>Concurrency, P95 and prefill-contention analysis on H20 and H200, load balancing and capacity estimation; an understanding of the inference stack from tensor cores and online softmax to MoE communication.</dd>
     </div>
     <div class="focus-row">
-      <dt>评测与迭代闭环</dt>
-      <dd>SOP 合规评测体系，基于 Langfuse 的评测服务；把线上错误沉淀为纠错样本，进入下一轮训练。</dd>
+      <dt>Evaluation and iteration loop</dt>
+      <dd>An SOP-compliance evaluation system and a Langfuse-based evaluation service; online errors are turned into correction samples for the next training round.</dd>
     </div>
     <div class="focus-row">
-      <dt>搜索、广告与推荐</dt>
-      <dd>十五年排序、CTR 预估与推荐系统经验，关注问题定义、多目标权衡与生态的长期收益。</dd>
+      <dt>Search, ads and recommendation</dt>
+      <dd>Fifteen years of ranking, CTR prediction and recommender-system experience, with a focus on problem definition, multi-objective trade-offs and the long-term health of the ecosystem.</dd>
     </div>
     <div class="focus-row">
-      <dt>正在研究</dt>
-      <dd>对话场景的强化学习与后训练（self-play、GRPO、DPO），以及能自我对话、持续迭代的成单智能体。</dd>
+      <dt>Currently exploring</dt>
+      <dd>Reinforcement learning and post-training for dialogue (self-play, GRPO, DPO), and deal-closing agents that practice by conversing with themselves and keep improving.</dd>
     </div>
   </dl>
 </section>
 
 <section class="wrap block" aria-labelledby="writing-h">
-  <h2 id="writing-h">文章</h2>
+  <h2 id="writing-h">Writing</h2>
+  <p class="block-note">Technical write-ups. The articles themselves are written in Chinese.</p>
   <ul class="post-list">
     {% for post in site.posts limit: 5 %}
     <li>
       <a href="{{ post.url | relative_url }}">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y 年 %-m 月" }}</time>
-        <span><span class="t">{{ post.title }}</span>{% if post.subtitle %}<span class="s">{{ post.subtitle }}</span>{% endif %}</span>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
+        <span><span class="t">{{ post.title_en | default: post.title }}</span>{% assign sub = post.subtitle_en | default: post.subtitle %}{% if sub %}<span class="s">{{ sub }}</span>{% endif %}</span>
       </a>
     </li>
     {% endfor %}
   </ul>
-  {% if site.posts.size > 5 %}<p><a href="{{ '/writing/' | relative_url }}">全部文章</a></p>{% endif %}
+  {% if site.posts.size > 5 %}<p><a href="{{ '/writing/' | relative_url }}">All articles</a></p>{% endif %}
 </section>
 
 <section class="wrap block" aria-labelledby="career-h">
-  <h2 id="career-h">经历</h2>
+  <h2 id="career-h">Experience</h2>
   <ul class="career">
     <li>
-      <span class="when">2025 年 9 月至今</span>
-      <span class="what"><b>LLM Agent</b><span>AI 算法专家：实时语音智能体、对话引擎、决策模型与推理优化</span></span>
+      <span class="when">Sep 2025 – present</span>
+      <span class="what"><b>LLM Agent</b><span>AI algorithm expert: real-time voice agents, dialogue engine, decision models and inference optimization</span></span>
     </li>
     <li>
-      <span class="when">此前十余年</span>
-      <span class="what"><b>搜索、广告与推荐</b><span>多家互联网与科技公司的算法工作：排序、CTR 预估、推荐系统</span></span>
+      <span class="when">Before that, 10+ years</span>
+      <span class="what"><b>Search, advertising and recommendation</b><span>Algorithm work at several internet and technology companies: ranking, CTR prediction, recommender systems</span></span>
     </li>
   </ul>
-  <p><a href="{{ '/about/' | relative_url }}">完整介绍</a></p>
+  <p><a href="{{ '/about/' | relative_url }}">Full profile</a></p>
 </section>

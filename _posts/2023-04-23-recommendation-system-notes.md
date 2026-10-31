@@ -1,6 +1,8 @@
 ---
 title: 推荐系统的几点观察
 subtitle: 流量分层、多利益方与问题定义
+title_en: Some Observations on Recommender Systems
+subtitle_en: Traffic tiering, multiple stakeholders and problem definition
 date: 2023-04-23
 tags:
     - 推荐系统

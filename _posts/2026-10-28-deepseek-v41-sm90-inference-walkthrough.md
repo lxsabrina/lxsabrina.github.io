@@ -2,6 +2,8 @@
 layout:     post
 title:      从 SM100 到 SM90：DeepSeek-V4.1 推理栈逐层拆解
 subtitle:   A Technical Walkthrough —— 张量核心、FP4、在线 Softmax、FlashMLA 与 MoE
+title_en:   "From SM100 to SM90: A Layer-by-Layer Breakdown of the DeepSeek-V4.1 Inference Stack"
+subtitle_en: "A technical walkthrough: tensor cores, FP4, online softmax, FlashMLA and MoE"
 date:       2026-10-28
 author:     张弦
 tags:

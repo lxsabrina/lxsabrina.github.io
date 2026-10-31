@@ -1,6 +1,8 @@
 ---
 title:      语音只是入口：从 GPT-Live 看语音智能体的三层架构
 subtitle:   Voice Interface → Agent Runtime → Business Execution
+title_en:   "Voice Is Just the Entry Point: The Three-Layer Architecture of Voice Agents, Seen Through GPT-Live"
+subtitle_en: "Voice Interface → Agent Runtime → Business Execution"
 date:       2026-10-28 11:30:00 +0800
 author:     张弦
 tags:
