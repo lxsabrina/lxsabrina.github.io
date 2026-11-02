@@ -1,15 +1,16 @@
-{% assign en = false %}{% if page.lang == 'en' %}{% assign en = true %}{% endif %}<!doctype html>
-<html lang="{{ page.lang | default: site.lang | default: 'zh-CN' }}">
+{% assign en = true %}<!doctype html>
+{% if page.layout == 'post' and page.lang != 'en' %}{% assign doc_lang = 'zh-CN' %}{% else %}{% assign doc_lang = page.lang | default: 'en' %}{% endif %}
+<html lang="{{ doc_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% assign site_title = page.site_title | default: site.title %}
-  {% assign tagline = page.tagline | default: 'AI 算法专家' %}
+  {% assign site_title = page.site_title | default: 'Zhang Xian' %}
+  {% assign tagline = page.tagline | default: 'AI Algorithm Expert' %}
   {% if page.title %}{% assign page_title = page.title | append: ' | ' | append: site_title %}{% else %}{% assign page_title = site_title | append: ' | ' | append: tagline %}{% endif %}
   <title>{{ page_title }}</title>
   {% assign desc = page.description | default: page.subtitle | default: site.description %}
   <meta name="description" content="{{ desc | strip_html | strip_newlines | escape }}">
-  <meta name="author" content="{{ page.site_title | default: site.author }}">
+  <meta name="author" content="Zhang Xian">
   <meta property="og:title" content="{{ page.title | default: site_title | escape }}">
   <meta property="og:description" content="{{ desc | strip_html | strip_newlines | escape }}">
   <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">

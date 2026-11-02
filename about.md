@@ -1,60 +1,61 @@
 ---
 layout: page
-title: 关于
-subtitle: AI 算法专家，十五年搜索、广告、推荐算法经验，现在做 LLM Agent 与实时语音智能体。
+lang: en
+title: About
+subtitle: AI algorithm expert with fifteen years in search, advertising and recommendation, now working on LLM agents and real-time voice agents.
 permalink: /about/
-description: 张弦的技术背景、核心能力与经历。
+description: Zhang Xian's background, core skills and experience.
 ---
 
-我是张弦，在北京工作的算法工程师。职业的前十几年做搜索、广告和推荐；2025 年 9 月起转向 LLM Agent，主要方向是全双工实时语音智能体。
+I am Zhang Xian, an algorithm engineer based in Beijing. I spent my first decade or so on search, advertising and recommendation. Since September 2025 I have worked on LLM agents, mainly full-duplex real-time voice agents. [中文版](/zh/about/)
 
-这两段经历看起来跨度很大，其实问题是相通的：在严格的延迟和成本约束下，从海量候选里选出正确的那一个，并且让整个系统可以被评测、被持续迭代。
+The two phases look far apart, but the problem is the same: under strict latency and cost constraints, pick the right option from a huge candidate set, and keep the whole system measurable and continuously improvable.
 
-## 核心能力
+## Core skills
 
-### 实时语音智能体
+### Real-time voice agents
 
-- 全双工语音对话引擎的设计与实现，覆盖外呼销售与客服场景
-- 语义打断、重叠语音的识别与处理
-- SOP 驱动的流程编排：把业务流程编译为可执行的对话流
-- 端到端延迟优化，提示缓存命中率与并发下的尾延迟治理
+- Design and implementation of full-duplex voice dialogue engines for outbound sales and customer service
+- Semantic interruption, and detection and handling of overlapping speech
+- SOP-driven flow orchestration: compiling business processes into executable dialogue flows
+- End-to-end latency optimization, prompt-cache hit rate, and tail latency under concurrency
 
-### LLM 决策与生成
+### LLM decision and generation
 
-- 规则检索加 LLM 选择器的两阶段架构：先选流程节点和适用规则，再生成回复
-- 把选择问题转化为判断题，用轻量的决策模型批量作答，兼顾速度与可校准性
-- 与通用 Agent 框架方案相比，在质量相当的前提下显著降低 token 消耗与延迟
+- A two-stage architecture of rule retrieval plus an LLM selector: choose the flow node and applicable rules first, then generate the reply
+- Turning selection into yes/no judgments answered in batch by a lightweight decision model, for speed and calibratability
+- Substantially lower token use and latency than general agent frameworks at comparable quality
 
-### 推理与系统
+### Inference and systems
 
-- GPU 推理的容量规划与性能分析（H20、H200），并发、P95 与 prefill 争用
-- 理解推理栈的底层机制：张量核心与低精度格式、FlashAttention 与 MLA、MoE 的通信与计算，见文章《[从 SM100 到 SM90：DeepSeek-V4.1 推理栈逐层拆解](/2026/10/28/deepseek-v41-sm90-inference-walkthrough/)》
+- GPU inference capacity planning and profiling (H20, H200): concurrency, P95 and prefill contention
+- The low-level mechanics of the inference stack: tensor cores and low-precision formats, FlashAttention and MLA, MoE communication and compute (see [From SM100 to SM90: a layer-by-layer walkthrough of the DeepSeek-V4.1 inference stack]({{ '/2026/10/28/deepseek-v41-sm90-inference-walkthrough/' | relative_url }}), written in Chinese)
 
-### 评测与迭代
+### Evaluation and iteration
 
-- SOP 合规评测体系的设计
-- 推动评测基础设施迁移到 Langfuse
-- 把线上错误沉淀为纠错样本：检索相似案例注入提示，同时作为后续训练数据
+- Design of an SOP-compliance evaluation system
+- Migrating evaluation infrastructure to Langfuse
+- Turning production errors into correction samples: retrieved similar cases are injected into the prompt and also kept as later training data
 
-### 搜索、广告与推荐
+### Search, advertising and recommendation
 
-- 十五年排序、CTR 预估、推荐系统的算法与工程经验
-- 关注问题定义本身：多利益方的目标权衡、新用户与新内容、多样性与长期生态
+- Fifteen years of ranking, CTR prediction and recommender-system work, in both algorithms and engineering
+- Attention to problem definition itself: trade-offs among stakeholders, new users and new content, diversity and long-term ecosystem health
 
-## 经历
+## Experience
 
-| 时间 | 方向 | 内容 |
+| Period | Area | Work |
 |---|---|---|
-| 2025 年 9 月至今 | LLM Agent | AI 算法专家，实时语音智能体 |
-| 此前十余年 | 搜索、广告与推荐 | 多家互联网与科技公司的算法工作 |
+| Sep 2025 to present | LLM agents | AI algorithm expert, real-time voice agents |
+| Previous decade or more | Search, advertising and recommendation | Algorithm work at several internet and technology companies |
 
-## 正在关注
+## Currently interested in
 
-- 对话场景的强化学习与后训练：self-play、GRPO、DPO，以及基于势函数的奖励设计
-- 能与自己对话、持续自我迭代的成单智能体
-- 大模型推理在国产与存量硬件上的适配
+- Reinforcement learning and post-training for dialogue: self-play, GRPO, DPO, and potential-based reward design
+- Deal-closing agents that can converse with themselves and keep improving
+- Adapting LLM inference to domestic and existing hardware
 
-## 联系
+## Contact
 
-- 邮箱：[{{ site.email }}](mailto:{{ site.email }})
-- GitHub：[github.com/{{ site.github_username }}](https://github.com/{{ site.github_username }})
+- Email: [{{ site.email }}](mailto:{{ site.email }})
+- GitHub: [github.com/{{ site.github_username }}](https://github.com/{{ site.github_username }})

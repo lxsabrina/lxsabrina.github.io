@@ -3,15 +3,16 @@ layout: default
 ---
 <article class="wrap post">
   <header class="post-head">
-    <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{% if page.lang == 'en' %}{{ page.date | date: "%b %-d, %Y" }}{% else %}{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}{% endif %}</time>{% if page.tags.size > 0 %}<span class="post-tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}</p>
+    <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.tags.size > 0 %}<span class="post-tags">{% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>{% endif %}</p>
     <h1 class="post-title">{{ page.title }}</h1>
     {% if page.subtitle %}<p class="post-sub">{{ page.subtitle }}</p>{% endif %}
-    {% if page.en_url %}<p class="post-lang"><a href="{{ page.en_url | relative_url }}" hreflang="en">Read in English</a></p>{% endif %}
-    {% if page.zh_url %}<p class="post-lang"><a href="{{ page.zh_url | relative_url }}" hreflang="zh">阅读中文版</a></p>{% endif %}
+    {% if page.en_url %}<p class="post-lang"><a href="{{ page.en_url | relative_url }}" hreflang="en">English edition</a></p>{% endif %}
+    {% if page.zh_url %}<p class="post-lang"><a href="{{ page.zh_url | relative_url }}" hreflang="zh">阅读中文版 (Chinese edition)</a></p>{% endif %}
+    {% unless page.lang == 'en' %}{% unless page.en_url %}<p class="post-lang">This article is written in Chinese.</p>{% endunless %}{% endunless %}
   </header>
 
   <details class="toc" id="toc" hidden>
-    <summary>{% if page.lang == 'en' %}Contents{% else %}目录{% endif %}</summary>
+    <summary>Contents</summary>
     <ol></ol>
   </details>
 
@@ -20,9 +21,9 @@ layout: default
   </div>
 
   {% unless page.lang == 'en' %}
-  <nav class="post-nav" aria-label="相邻文章">
-    {% if page.previous.url %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span>上一篇</span>{{ page.previous.title }}</a>{% endif %}
-    {% if page.next.url %}<a class="next" href="{{ page.next.url | relative_url }}"><span>下一篇</span>{{ page.next.title }}</a>{% endif %}
+  <nav class="post-nav" aria-label="Adjacent articles">
+    {% if page.previous.url %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span>Previous</span>{{ page.previous.title_en | default: page.previous.title }}</a>{% endif %}
+    {% if page.next.url %}<a class="next" href="{{ page.next.url | relative_url }}"><span>Next</span>{{ page.next.title_en | default: page.next.title }}</a>{% endif %}
   </nav>
   {% endunless %}
 </article>
