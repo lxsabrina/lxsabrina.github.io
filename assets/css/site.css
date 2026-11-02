@@ -182,3 +182,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
   .post-nav { grid-template-columns: 1fr; }
   .post-nav .next { grid-column: 1; text-align: left; }
 }
+
+.post-lang { margin: .4rem 0 0; font-size: .9rem; }
+.post-lang a { color: var(--accent, inherit); }

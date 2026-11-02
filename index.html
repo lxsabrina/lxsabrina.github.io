@@ -61,11 +61,11 @@ description: Zhang Xian, AI algorithm expert. Fifteen years in search, advertisi
 
 <section class="wrap block" aria-labelledby="writing-h">
   <h2 id="writing-h">Writing</h2>
-  <p class="block-note">Technical write-ups. The articles themselves are written in Chinese.</p>
+  <p class="block-note">Technical write-ups. Most are written in Chinese; those with an English edition link to it.</p>
   <ul class="post-list">
     {% for post in site.posts limit: 5 %}
     <li>
-      <a href="{{ post.url | relative_url }}">
+      <a href="{% if post.en_url %}{{ post.en_url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
         <span><span class="t">{{ post.title_en | default: post.title }}</span>{% assign sub = post.subtitle_en | default: post.subtitle %}{% if sub %}<span class="s">{{ sub }}</span>{% endif %}</span>
       </a>
