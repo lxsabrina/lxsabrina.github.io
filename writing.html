@@ -1,13 +1,14 @@
 ---
 layout: default
-title: 文章
+lang: en
+title: Writing
 permalink: /writing/
-description: 张弦的技术文章：大模型推理、LLM Agent、搜索推荐。
+description: Technical articles by Zhang Xian on LLM inference, LLM agents, voice agents, and search and recommendation.
 ---
 <section class="wrap page">
   <header class="page-head">
-    <h1 class="page-title">文章</h1>
-    <p class="page-sub">大模型推理、LLM Agent 与搜索推荐的技术笔记。</p>
+    <h1 class="page-title">Writing</h1>
+    <p class="page-sub">Technical notes on LLM inference, LLM agents, voice agents, and search and recommendation. Most articles are written in Chinese; those with an English edition link to it.</p>
   </header>
   {% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
   {% for year in by_year %}
@@ -15,9 +16,9 @@ description: 张弦的技术文章：大模型推理、LLM Agent、搜索推荐�
   <ul class="post-list">
     {% for post in year.items %}
     <li>
-      <a href="{{ post.url | relative_url }}">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-m 月 %-d 日" }}</time>
-        <span><span class="t">{{ post.title }}</span>{% if post.subtitle %}<span class="s">{{ post.subtitle }}</span>{% endif %}</span>
+      <a href="{% if post.en_url %}{{ post.en_url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
+        <span><span class="t">{{ post.title_en | default: post.title }}</span>{% assign sub = post.subtitle_en | default: post.subtitle %}{% if sub %}<span class="s">{{ sub }}</span>{% endif %}{% unless post.en_url %}<span class="s">Written in Chinese</span>{% endunless %}</span>
       </a>
     </li>
     {% endfor %}
