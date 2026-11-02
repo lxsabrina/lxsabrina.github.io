@@ -5,7 +5,7 @@ title_en:   "Parlant's New Direction: From Guidelines to Unified Rules, a Walkth
 subtitle_en: "Rule abstraction · three-tier matching · batched Jev verdicts · speed-ups"
 en_url:     /en/parlant-compass-engine-walkthrough/
 date:       2026-10-30 11:45:00 +0800
-author:     张弦
+author:     Zhang Xian
 tags:
     - Parlant
     - Agent

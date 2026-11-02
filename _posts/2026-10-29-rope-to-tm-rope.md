@@ -5,7 +5,7 @@ title_en:   "Deriving RoPE from First Principles, Then on to Qwen-Omni's TM-RoPE
 subtitle_en: "Rotation, relative position, hand-checked examples and a PyTorch implementation"
 en_url:     /en/rope-to-tm-rope/
 date:       2026-10-29 10:30:00 +0800
-author:     张弦
+author:     Zhang Xian
 tags:
     - 位置编码
     - RoPE

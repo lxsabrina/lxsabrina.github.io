@@ -6,7 +6,7 @@ title_en:   "From SM100 to SM90: A Layer-by-Layer Breakdown of the DeepSeek-V4.1
 subtitle_en: "A technical walkthrough: tensor cores, FP4, online softmax, FlashMLA and MoE"
 en_url:     /en/deepseek-v41-sm90-inference-walkthrough/
 date:       2026-10-28
-author:     张弦
+author:     Zhang Xian
 tags:
     - 大模型推理
     - 注意力机制

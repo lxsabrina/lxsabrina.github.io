@@ -5,7 +5,7 @@ title_en:   "Reading Full-Duplex Voice Models: MiniCPM-o 4.5 and Realtime-Venus"
 subtitle_en: "Principles and training from the papers, and how delegation differs from ordinary function calling"
 en_url:     /en/minicpm-o-45-realtime-venus/
 date:       2026-11-02 12:30:00 +0800
-author:     张弦
+author:     Zhang Xian
 tags:
     - 语音智能体
     - 全双工
