@@ -1,6 +1,6 @@
 # lxsabrina.github.io
 
-张弦的个人网站与技术博客，基于 GitHub Pages 与 Jekyll。
+Zhang Xian's personal site and technical blog，基于 GitHub Pages 与 Jekyll。
 
 - 首页：`index.html`
 - 关于：`about.md`

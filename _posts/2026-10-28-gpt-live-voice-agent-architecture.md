@@ -5,7 +5,7 @@ title_en:   "Voice Is Just the Entry Point: The Three-Layer Architecture of Voic
 subtitle_en: "Voice Interface → Agent Runtime → Business Execution"
 en_url:     /en/gpt-live-voice-agent-architecture/
 date:       2026-10-28 11:30:00 +0800
-author:     张弦
+author:     Zhang Xian
 tags:
     - 语音智能体
     - 全双工
