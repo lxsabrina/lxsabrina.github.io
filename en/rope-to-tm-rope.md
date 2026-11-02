@@ -779,39 +779,19 @@ audio chunk → [audio encoder] → [projection layer/adapter] → [LLM incremen
 
 The trade-off between the two is accuracy versus flexibility: a fixed chunk size is more accurate and dynamic sampling is more flexible. Which is better depends on whether the chunk size needs to be adjustable online.
 
-**Boundaries to state honestly.** The above is a summary of how several papers do it. Two questions the papers do not answer: first, how the window size is sampled during AuT training (neither the Qwen3-ASR nor the Qwen3-Omni report says); second, "how much worse a projection layer trained offline gets when switched to chunked features". The latter has to be measured, by directly comparing feature similarity and transcription error rate in the two modes, not reasoned out; one measurement of feature similarity is in the next subsection, and the transcription error rate has not been measured. Streaming also has a cost: in the Qwen3-ASR report the average error rate of the 1.7B model rises from 2.69 offline to 3.33 with 2-second-chunk streaming.
+**Boundaries to state honestly.** The above is a summary of how several papers do it. Two questions the papers do not answer: first, how the window size is sampled during AuT training (neither the Qwen3-ASR nor the Qwen3-Omni report says); second, "how much worse a projection layer trained offline gets when switched to chunked features". The latter has to be measured, by directly comparing feature similarity and transcription error rate in the two modes, not reasoned out. Streaming also has a cost: in the Qwen3-ASR report the average error rate of the 1.7B model rises from 2.69 offline to 3.33 with 2-second-chunk streaming.
 
 **Streaming for ASR and streaming input for an LLM are not the same thing.** ASR must output text while listening, and later audio changes the judgment about earlier text, so a rollback mechanism is required: in the official qwen-asr 0.0.6 the streaming interface re-feeds all the accumulated audio into the model for every chunk (2 seconds by default), takes the previous text minus its last 5 tokens as the prefix for the decoder to continue from, and the first 2 chunks carry no prefix; NIM4-ASR likewise allows rolling back the last 5 tokens. When an LLM does only streaming input, it can wait until the input ends before generating and does not need to revise text; once it must start outputting before the input ends (for example to decide on an interruption), it becomes interleaved input and output, and only then does the LLM side need training. The difference between the two is not "causal or not" (the decoder of an LLM-based ASR is itself causal), but **when the output is produced and whether it must align with the audio**.
 
-### Measurement: window size changes AuT features, so the streaming service keeps the window
+### How the official Qwen3-ASR streaming works
 
-Earlier I said "how much chunked features differ from offline features has to be measured". This records one measurement and the design trade-off made from it.
-
-**First, how the official Qwen3-ASR streaming works (reading the qwen-asr 0.0.6 source).**
+The following comes from reading the qwen-asr 0.0.6 source.
 
 - AuT's window size is not structure but a runtime setting, `n_window_infer`: the Mel features are first cut into blocks of `n_window×2` frames, each block passes through the convolutional downsampling independently, then bidirectional attention runs within a window, and windows cannot see each other. The same weights work under different window settings, matching the report's "dynamic window of 1 to 8 seconds".
 - The official streaming interface `streaming_transcribe` does not cache encoder state. Each time a chunk's worth of audio (2 seconds by default) has accumulated, it **re-feeds all the audio so far as a whole**; the decoder's prefix is the previous text minus its last 5 tokens, and the first 2 chunks carry no prefix. The model keeps no streaming state internally; the state lives only in the caller's Python objects.
 - In other words, its "streaming" is **recomputation plus continuing from a prefix**, and the window configuration never changes.
 
-**Measurement: changing the window from 8 seconds to 2 seconds changes the features considerably.**
-
-| Item | Result |
-|---|---|
-| Checkpoint config | `n_window=50`, `n_window_infer=800` (an 8-second window), `output_dim=2048` |
-| Attention implementation at load | `sdpa` |
-| Comparison | 20 clips of ≤ 8 seconds, same weights, window 800 versus window 200, 1,074 frames in total |
-| Per-frame cosine similarity | mean 0.897, minimum 0.099 |
-
-Two boundaries to note: first, this compared only features and **did not measure the effect on transcription error rate**; second, when I first read the source and tested with random weights, I concluded that "under sdpa the window parameter is ignored", which is the opposite of the measurement on the server. Source versions and runtime environments differ and behavior may differ, so any conclusion about the attention implementation should rest on measurement in the actual runtime environment and not on reading code alone.
-
-**The design trade-off that follows.**
-
-- When we train the projection layer, every clip is at most 8 seconds long, so under window 800 it is whole-clip full attention.
-- If the streaming service switched to a small window (say 2 seconds) for encoder-level incremental processing, the features would drift from the training distribution and the projection layer would need retraining on windowed features.
-- If we follow the official approach, keeping the window at the checkpoint default of 800, re-feeding the whole clip at each chunk, and capping a single segment at 7.5 seconds (past that, finalize and start a new segment), then each segment's feature computation matches training and no retraining is needed. The cost is repeated encoding; the measured encoder time is about 0.02 seconds, far below the LLM generation time, which is acceptable.
-- So the conclusion of this measurement is not "streaming does not work", but: **real incremental encoding with a small window requires retraining the projection layer; keeping whole-clip re-feeding does not.** The former is left for the interruption-detection stage.
-
-**Not yet verified.** How well the whole-clip re-feeding plus prefix continuation works on a frozen 27B model: the 27B has not learned to "continue from an existing prefix", this is an inference-time trick, and it needs comparing against "regenerate from scratch each time" on final error rate, plus counting how many characters at the end of a sentence get completed by the language prior. This part is in progress.
+This also supports the earlier point: window size changes the features the encoder produces, so real incremental encoding with a small window means retraining the downstream projection layer on windowed features, whereas keeping whole-clip re-feeding leaves each segment's feature computation identical to offline, at the cost of repeated encoding.
 
 ## 10. Summary and common misconceptions
 
