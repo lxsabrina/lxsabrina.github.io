@@ -29,7 +29,7 @@ The two phases look far apart, but the problem is the same: under strict latency
 ### Inference and systems
 
 - GPU inference capacity planning and profiling (H20, H200): concurrency, P95 and prefill contention
-- The low-level mechanics of the inference stack: tensor cores and low-precision formats, FlashAttention and MLA, MoE communication and compute (see [From SM100 to SM90: a layer-by-layer walkthrough of the DeepSeek-V4.1 inference stack]({{ '/2026/10/28/deepseek-v41-sm90-inference-walkthrough/' | relative_url }}), written in Chinese)
+- The low-level mechanics of the inference stack: tensor cores and low-precision formats, FlashAttention and MLA, MoE communication and compute (see [From SM100 to SM90: a layer-by-layer walkthrough of the DeepSeek-V4.1 inference stack]({{ '/en/deepseek-v41-sm90-inference-walkthrough/' | relative_url }}))
 
 ### Evaluation and iteration
 

@@ -8,7 +8,7 @@ description: Technical articles by Zhang Xian on LLM inference, LLM agents, voic
 <section class="wrap page">
   <header class="page-head">
     <h1 class="page-title">Writing</h1>
-    <p class="page-sub">Technical notes on LLM inference, LLM agents, voice agents, and search and recommendation. Most articles are written in Chinese; those with an English edition link to it.</p>
+    <p class="page-sub">Technical notes on LLM inference, LLM agents, voice agents, and search and recommendation. Each article is available in English and Chinese.</p>
   </header>
   {% assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
   {% for year in by_year %}
@@ -18,7 +18,7 @@ description: Technical articles by Zhang Xian on LLM inference, LLM agents, voic
     <li>
       <a href="{% if post.en_url %}{{ post.en_url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">
         <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
-        <span><span class="t">{{ post.title_en | default: post.title }}</span>{% assign sub = post.subtitle_en | default: post.subtitle %}{% if sub %}<span class="s">{{ sub }}</span>{% endif %}{% unless post.en_url %}<span class="s">Written in Chinese</span>{% endunless %}</span>
+        <span><span class="t">{{ post.title_en | default: post.title }}</span>{% assign sub = post.subtitle_en | default: post.subtitle %}{% if sub %}<span class="s">{{ sub }}</span>{% endif %}</span>
       </a>
     </li>
     {% endfor %}

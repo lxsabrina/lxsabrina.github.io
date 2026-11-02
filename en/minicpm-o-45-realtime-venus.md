@@ -196,7 +196,7 @@ I did not check the following against the originals, so please confirm them in t
 - DuplexOmni details come from its model card, and the thinking layer in the paper's configuration is Gemini-3.1-Flash-Lite;
 - how a background result is actually injected, which needs a source-code check.
 
-Related reading: [Voice Is Just the Entry Point: The Three-Layer Architecture of Voice Agents, Seen Through GPT-Live]({{ '/2026/10/28/gpt-live-voice-agent-architecture/' | relative_url }}) (written in Chinese) covers how the front end, runtime and business execution are divided from an engineering angle.
+Related reading: [Voice Is Just the Entry Point: The Three-Layer Architecture of Voice Agents, Seen Through GPT-Live]({{ '/en/gpt-live-voice-agent-architecture/' | relative_url }}) covers how the front end, runtime and business execution are divided from an engineering angle.
 
 ## References
 
