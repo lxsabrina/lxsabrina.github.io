@@ -3,7 +3,7 @@ layout:     post
 lang:       en
 permalink:  /en/full-duplex-listening-time/
 title:      "What a Full-Duplex Model Does While It Listens: State Tokens vs. Latent Reasoning"
-subtitle:   "Reading BayLing-Duplex and FLAIR side by side"
+subtitle:   "From BayLing-Duplex, FLAIR and Diffuplex to the 2026 industry releases"
 zh_url:     /2026/11/04/full-duplex-listening-time/
 date:       2026-11-04 10:00:00 +0800
 author:     Zhang Xian
@@ -15,12 +15,13 @@ tags:
 
 ## Summary
 
-One hard question for full-duplex speech models is what the model is doing while the user is talking. Two 2026 papers answer it differently:
+One hard question for full-duplex speech models is what the model is doing while the user is talking. Three 2026 papers answer it in three ways:
 
 - **BayLing-Duplex** (arXiv 2606.14528) turns "listen, speak, stop" into four state tokens in a text channel, predicted by the same autoregressive LLM, and adds a light DPO stage aimed only at timing.
 - **FLAIR** (arXiv 2603.17837) argues that the user's speaking time should not be spent on idle silence or padding. The model should keep reasoning in latent space, without adding inference latency.
+- **Diffuplex** (arXiv 2610.17780, NVIDIA) separates "when to speak" from "what to say": an autoregressive policy handles timing while a diffusion model generates the content in parallel on a canvas, free of the audio frame rate.
 
-The first tackles when to speak and when to stop. The second tackles whether listening time can do useful computation. The two ideas are not mutually exclusive.
+The first two each take one problem: timing, and whether listening time can do useful computation. Diffuplex changes how the content is generated. A later section surveys four full-duplex systems released in the same period: Seeduplex, Dessa, RoboBrain-Audio and FireRedChat.
 
 ## Key conclusions
 
@@ -28,7 +29,9 @@ The first tackles when to speak and when to stop. The second tackles whether lis
 - Its ablation shows token weights are decisive: with uniform weights the model stays almost permanently silent (60.3% turn-taking success). Lowering the [SILENCE] weight restores most of the behavior.
 - During listening, FLAIR feeds back a softmax-weighted average of vocabulary embeddings as a continuous latent input. A training-only, non-causal expert provides the target; it is dropped at inference.
 - FLAIR's own results: latent reasoning gives small gains on knowledge-style QA and neither clearly improves nor clearly hurts turn-taking and barge-in.
-- Training and evaluation audio in both papers is largely synthetic. The numbers are not comparable across papers and should not be extrapolated to noisy, multi-speaker real conditions.
+- Diffuplex reports about 13 tokens per forward pass against 1.00 for autoregressive baselines, measured on the authors' own hardware and setup; code and weights are not yet released.
+- Among the industry releases, Seeduplex has official engineering metrics and an online A/B test, Dessa has only demos, and FireRedChat is a cascaded system plus a full-duplex controller rather than a native model. All of these numbers are vendor-reported.
+- Training and evaluation audio in the papers is largely synthetic. The numbers are not comparable across papers and should not be extrapolated to noisy, multi-speaker real conditions.
 
 ## 1. The problem: listening time is wasted
 
@@ -112,33 +115,107 @@ Most tasks improve, MMSU the most (+6.0), and TriviaQA drops slightly. On conver
 
 The paper also notes that some half-duplex baselines score higher on certain benchmarks (for example Kimi-Audio at 62.2 on MMSU), which the authors attribute to data mismatch and their own shorter answers.
 
-## 4. Side by side
+## 4. Diffuplex: separating "when to speak" from "what to say"
 
-| Dimension | BayLing-Duplex | FLAIR |
-|---|---|---|
-| Main problem | Timing: when to speak, when to stop | How to use listening time |
-| Core mechanism | Four state tokens in a text channel, block interleaving | Recurrent latent input, plus a training-time expert |
-| Extra modules | None | Timing head; training-only global expert |
-| Preference optimization | DPO that perturbs only timing | Mentioned as possible post-training, not done |
-| Barge-in granularity | Block (0.8 s); in-flight speech finishes first | Per token, via the timing head |
-| Main gains | Turn-taking and barge-in metrics | Some knowledge-style QA |
-| Data | Synthetic, single speaker, near-field, noise-free | Mostly synthetic, with noise and multi-speaker augmentation |
+### 4.1 What it tries to fix
 
-The two could be combined (inference): state tokens make timing explicit and latent reasoning makes listening positions compute something useful. The papers do not try this, and the two schemes use the padding positions in conflicting ways, so a combination would need a redesigned sequence format.
+The paper argues that squeezing "when to speak" and "what to say" onto one autoregressive timeline makes them compete, and that tying generation to the audio frame rate caps the compute available at test time. Diffuplex (*Full-duplex Spoken Language Modeling with Discrete Diffusion*) takes content generation off that timeline.
 
-## 5. Caveats when reading this kind of paper
+### 4.2 Method
+
+![Figure 3: Diffuplex's autoregressive policy and parallel diffusion generation](/img/posts/fullduplex-listening/03-diffuplex-en.svg)
+
+*Figure 3: One backbone, two modes. The autoregressive policy reads user audio in 80 ms chunks and predicts one of listen / speak / bos / eos. On bos, the diffusion mode denoises a 256-token canvas bidirectionally, and the first 8 committed tokens go to streaming TTS.*
+
+- Speech enters the backbone through a Parakeet encoder and a projection layer. The two modes share parameters but keep separate KV caches.
+- When bos fires, the current speech context is prefilled into the diffusion cache. The first 8 tokens of the canvas (the anchored prefix) are committed within at most K denoising passes and streamed to TTS (CosyVoice 3) while the rest keeps denoising.
+- If the user interrupts within one second, the unspoken part of the canvas is discarded and does not enter the context.
+- Training has three stages: modality alignment on ASR data; spoken instruction following (about 600K examples, distilled from a frozen text copy of the model); and full duplex (generator frozen, only the four-state interaction head and a listening-mode LoRA trained, on about 120 hours of synthetic dialogue plus 70 hours of conversational data).
+
+### 4.3 Results and costs
+
+As reported by the paper:
+
+- **Speed**: about 13.0 tokens per forward pass versus 1.00 for autoregressive baselines; up to 1,872 tokens/s at batch 1 on one GB300, versus 394 (Nemotron-3 Omni) and 300 (Qwen3-Omni-Thinking). The authors note the throughput gain is smaller than the per-pass gain because one diffusion pass costs more than one autoregressive step.
+- **Quality**: VoiceBench overall is 86.9 with thinking and 84.1 without at the instruction-following stage; the full-duplex stage (no thinking) scores 82.3 against 58.1 for Nemotron-3 VoiceChat.
+- **First-audio latency vs. quality**: a smaller K gives faster first audio and lower quality. K=2 gives 251 ms and 80.5; K=4 gives 296 ms and 82.3; uncapped gives 497 ms and 84.0 (measured on an RTX 6000, excluding the time the autoregressive policy takes to decide the turn).
+- **Ablation**: removing text-anchored distillation drops the score to 66.1, and dropping the stage-1 modality alignment leaves 29.9. Transferring speech-to-text ability is a precondition for this design.
+
+Limitations: code and weights are "coming soon", so nothing is independently reproducible; speed and latency were measured on different hardware (the GB300 throughput uses quantized experts); the full-duplex stage scores 1.8 points below the instruction-following stage, which the paper attributes to streaming decisions and early-prefix decoding without isolating the cause.
+
+My reading (inference): Diffuplex is not a rival to the first two. The state tokens in BayLing-Duplex and the timing head in FLAIR both answer "when to speak", and so does Diffuplex's autoregressive policy; the difference is that it stops content generation from occupying that timeline.
+
+## 5. The 2026 industry releases at a glance
+
+The figure below puts five systems side by side: the core idea, and whether you can try it. The "demo" notes only relay what the official pages and papers show. I have not tried any of them.
+
+![Figure 4: Core idea, demo and availability of five full-duplex speech systems](/img/posts/fullduplex-listening/04-landscape-en.svg)
+
+*Figure 4: One-page overview. Availability follows each official page and may change.*
+
+### 5.1 Seeduplex (ByteDance Seed, April 2026)
+
+- **Technique**: the official blog describes a native full-duplex model on the company's in-house LLM, replacing the standalone VAD and conventional noise suppression of the previous half-duplex system. After large-scale speech pretraining it is post-trained on multiple tasks: dialogue quality, latency, turn-taking, interference robustness and directed-speech understanding. Two points are stressed: continuous listening that separates the main speaker from background noise and nearby conversations, and joint speech-and-semantic end-of-turn judgment that waits through hesitation but answers quickly once the user is done. Speculative sampling and quantization are used at inference. Model size, data volume and detailed architecture are not disclosed.
+- **Company-reported metrics** (against the previous half-duplex Doubao model): false replies and false interruptions halved in noisy scenes; AI cut-in ratio down 40% relative in complex scenes; end-of-turn latency about 250 ms faster; interruption response about 300 ms faster; overall call satisfaction up 8.34 points absolute in an online A/B test. The post also admits overall fluency still trails human conversation.
+- **Demo and trying it**: the project page has videos for in-car commands, a cafe with several speakers, a mock English interview, rapid Q&A, a classical-poetry game and mid-sentence interruption. In the updated Doubao app, choose the call option in the chat box to try it.
+
+### 5.2 Dessa (Block, October 2026)
+
+- **Technique**: the official page describes a speech-to-speech full-duplex model trained from scratch on recorded human conversation only: no text and no pretrained language model. There is no speech-to-text step, and it decides for itself when to interject and when to backchannel. The page says inference is faster than real time and the model runs locally on an M4 Max MacBook Pro or better. Parameter count, data sources and design details are not given, and there are no benchmarks or quantitative evaluations.
+- **Demo and trying it**: the page has subtitled recordings, including recalling a movie title, an emotional anniversary conversation, and an exchange with another company's model (the page states Block is not affiliated with it). Access is by waitlist; early access is limited to AI safety researchers applying with an institutional email.
+- The page calls it possibly the first system trained only on human speech that you can hold a live conversation with, "as far as we know". This is the company's claim and is not independently verified.
+
+### 5.3 RoboBrain-Audio (BAAI and others; corresponds to FLM-Audio)
+
+- **A naming note**: Chinese press coverage calls the native full-duplex model that BAAI open-sourced with Spin Matrix and Nanyang Technological University "RoboBrain-Audio". The paper I found for it is FLM-Audio (arXiv 2509.02521, first submitted September 2025). The paper itself does not use the name RoboBrain-Audio, so the correspondence rests on press coverage; please verify. It was not released in 2026.
+- **Technique**: a roughly 7B backbone initialized from the language model of Qwen-2.5-VL, with a Moshi-style RQ-Transformer; audio at 12.5 frames per second with 8 tokens per frame, coded by Mimi. At each time step the text, listening and speaking channels are merged into one input. The key idea is "natural monologues": instead of word-level alignment with padding, the text channel carries continuous sentences and emits "wait" tokens while speech catches up. Training alternates a "text leads speech" format (TTS-like) and a "text follows the listening channel" format (ASR-like) across stages.
+- **Paper-reported results**: stage 1 uses about 1M hours of speech, reportedly under 15% of the audio Moshi used; LlamaQuestions accuracy 56.3 vs. 43.7 for Moshi; turn-taking accuracy 0.98 on a noisy test with interruptions; in a controlled comparison, contiguous monologues beat a word-aligned Moshi-style setup (WER 18.2 vs. 22.3 at 5% of the data).
+- **Demo and trying it**: the paper says code and models will be released and Chinese press says they are open-sourced. The paper page gives no links, and I did not verify a repository.
+
+### 5.4 FireRedChat (Xiaohongshu FireRed team, September 2025)
+
+- **Technique**: unlike the systems above, it is not native full duplex. It adds a full-duplex controller to a cascaded or semi-cascaded half-duplex pipeline. The controller has two parts: a streaming personalized VAD (target-speaker conditioning; causal convolutions, ECAPA-TDNN speaker embedding, GRU) that suppresses false barge-ins from background noise and non-primary speakers, and a fine-tuned multilingual BERT classifier for semantic end-of-turn. The interaction module is either a cascade of FireRedASR, Qwen2.5 and FireRedTTS, or a semi-cascade where an audio LLM takes speech directly and feeds TTS. Dialogue management is built on Dify for tool calls and context.
+- **Paper-reported internal evaluation**: barge-in T90 of 170 ms with a 10.2% false barge-in rate, versus 140 ms and 33.4% for LiveKit and 90 ms and 78.1% for Ten. The authors note they are about 30 ms slower than LiveKit in exchange for far fewer false barge-ins. End-to-end latency P50 is 2.341 s against 2.075 s for an industrial system, measured on only 25 synthetic utterances.
+- **Demo and trying it**: there is an official demo page; the paper page gives no code link, and I did not verify whether a repository is public.
+
+### 5.5 Reading across them
+
+By route: Seeduplex and Dessa are native full duplex, the first stressing engineered interference robustness and end-of-turn detection, the second learning directly from human conversation; FLM-Audio lowers alignment cost with natural monologues; FireRedChat shows that a good controller gives a usable full-duplex experience without changing the model; Diffuplex changes how content is generated. Vendor numbers are hard to compare across systems: the baselines differ (a previous half-duplex model, Moshi, LiveKit) and the evaluation sets are mostly internal or synthetic.
+
+## 6. Side by side
+
+The three papers compared (industry systems are in Figure 4):
+
+| Dimension | BayLing-Duplex | FLAIR | Diffuplex |
+|---|---|---|---|
+| Main problem | Timing: when to speak, when to stop | How to use listening time | Taking content generation off the timeline |
+| Core mechanism | Four state tokens in a text channel, block interleaving | Recurrent latent input, plus a training-time expert | Autoregressive policy plus a parallel diffusion canvas |
+| Extra modules | None | Timing head; training-only global expert | Diffusion mode (same backbone), TTS |
+| Preference optimization | DPO that perturbs only timing | Mentioned as possible post-training, not done | Not mentioned |
+| Barge-in granularity | Block (0.8 s); in-flight speech finishes first | Per token, via the timing head | 80 ms; within 1 s the unspoken canvas is discarded |
+| Main gains | Turn-taking and barge-in metrics | Some knowledge-style QA | Tokens per forward pass, throughput |
+| Data | Synthetic, single speaker, near-field, noise-free | Mostly synthetic, with noise and multi-speaker augmentation | Synthetic dialogue plus a small amount of conversational data |
+
+BayLing-Duplex and FLAIR could be combined (inference): state tokens make timing explicit and latent reasoning makes listening positions compute something useful. The papers do not try this, and the two schemes use the padding positions in conflicting ways, so a combination would need a redesigned sequence format.
+
+## 7. Caveats when reading papers and release posts
 
 1. **Synthetic audio.** BayLing-Duplex trains and evaluates on fully synthetic, single-speaker, near-field, noise-free audio, and its authors say noise, reverberation and competing speakers are untested. FLAIR adds noise and multi-speaker augmentation but is still mostly synthetic.
-2. **Different baselines.** BayLing-Duplex compares with Moshi; FLAIR compares its own on/off variants and several half-duplex models. Numbers do not transfer across papers.
+2. **Different baselines.** BayLing-Duplex compares with Moshi; FLAIR compares its own on/off variants and several half-duplex models; Diffuplex compares with autoregressive omni models. Vendor numbers (section 5) have the same problem and are mostly internal evaluations. Numbers do not transfer across papers.
 3. **Metric definitions.** "Time to stop after barge-in" depends on VAD segmentation; BayLing-Duplex uses Silero VAD for evaluation only. A different segmenter changes the numbers.
 4. **Latency floor.** A block design has a structural latency floor. It is a design choice, not something tuning removes.
 
-## 6. Conclusion
+## 8. Conclusion
 
-Both papers treat the listening positions as a resource. BayLing-Duplex uses them to carry control signals; FLAIR uses them to compute. For anyone building full-duplex voice, the first offers a recipe that can be followed directly (block interleaving, token weights, timing-only DPO), and the second a direction worth watching whose benefit is not yet clear. What will really decide quality is evaluation in real conditions, which is exactly the gap both papers share.
+The first two papers treat the listening positions as a resource: BayLing-Duplex uses them to carry control signals and FLAIR uses them to compute. Diffuplex moves content generation off the timeline altogether. On the industry side, native full duplex and "cascade plus controller" coexist. For anyone building full-duplex voice, the first offers a recipe that can be followed directly (block interleaving, token weights, timing-only DPO), and the second a direction worth watching whose benefit is not yet clear. What will really decide quality is evaluation in real conditions, which is exactly the gap these papers share.
 
 ## To verify
 
+- Diffuplex's numbers come from the paper's page text; code and weights are not yet released.
+- Seeduplex's metrics come from the official blog and are company-reported; the post gives no numeric scores beyond the listed relative changes.
+- Dessa's page does not state a release date; October 2026 is based on press coverage.
+- The RoboBrain-Audio / FLM-Audio correspondence rests on Chinese press coverage (Sina and Zhihu articles surfaced by search) that I could not open and check; FLM-Audio's open-source links are also unverified.
+- The FireRedChat paper page does not say whether the code is public.
 - FLAIR's loss weights α and β and the exact ablation numbers were not in the paper page I read; check the original.
 - FLAIR's tables come from the page text of arXiv v5; for Full-Duplex-Bench numbers, rely on the paper.
 
@@ -146,5 +223,10 @@ Both papers treat the listening positions as a resource. BayLing-Duplex uses the
 
 - [BayLing-Duplex: Native Full-Duplex Speech Dialogue with a Single Autoregressive LLM (arXiv 2606.14528)](https://arxiv.org/abs/2606.14528)
 - [The Silent Thought: Modeling Internal Cognition in Full-Duplex Spoken Dialogue Models via Latent Reasoning (arXiv 2603.17837)](https://arxiv.org/abs/2603.17837)
+- [Full-duplex Spoken Language Modeling with Discrete Diffusion (arXiv 2610.17780)](https://arxiv.org/abs/2610.17780)
+- [Seed full-duplex speech LLM announcement (ByteDance Seed official blog, Chinese)](https://seed.bytedance.com/zh/blog/introducing-seed-full-duplex-speech-llm-attentive-listening-robust-interference-suppression-enabling-more-natural-interaction)
+- [Dessa (Block)](https://block.xyz/dessa)
+- [FLM-Audio: Natural Monologues Improves Native Full-Duplex Chatbots via Dual Training (arXiv 2509.02521)](https://arxiv.org/abs/2509.02521)
+- [FireRedChat: A Pluggable, Full-Duplex Voice Interaction System with Cascaded and Semi-Cascaded Implementations (arXiv 2509.06502)](https://arxiv.org/abs/2509.06502)
 
-*Note: all numbers come from the page text of the two papers above, as reported by their authors, and were not reproduced by me.*
+*Note: all numbers come from the page text of the papers, blog post and web page above, as reported by their authors or vendors, and were not reproduced by me. Demo notes only relay what the official pages show; I did not try the systems.*
