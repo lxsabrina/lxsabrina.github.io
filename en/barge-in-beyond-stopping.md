@@ -168,4 +168,4 @@ Interruption handling is a chain: detect, yield, update state, recover. This bat
 
 Related reading: [Reading Full-Duplex Voice Models: MiniCPM-o 4.5 and Realtime-Venus]({{ '/en/minicpm-o-45-realtime-venus/' | relative_url }}).
 
-*Note: all numbers come from the papers' text and tables, are author-reported and were not independently reproduced. For the original Full-Duplex-Bench (2503.04721) only abstract-level information was used; the appendices of IHBench and EchoChain were not read in full.*
+*Note: all numbers are author-reported and were not independently reproduced. To verify: the Full-Duplex-Bench section rests on its abstract; SID-Bench's text and Table I are not fully consistent on whether sample counts are per language or in total, so only the 3,700 total is quoted.*

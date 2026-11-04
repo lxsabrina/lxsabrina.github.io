@@ -167,4 +167,4 @@ EchoChain（Modi 等，arXiv 2604.16456）在预先合成的用户音频里插�
 
 相关阅读：[全双工语音模型精读：MiniCPM-o 4.5 与 Realtime-Venus]({% post_url 2026-11-02-minicpm-o-45-realtime-venus %})。
 
-*说明：所有数字来自论文正文与表格，作者报告，未经独立复现；Full-Duplex-Bench 原论文只读了摘要级信息（2503.04721），其细节未在本文展开。IHBench 与 EchoChain 的页面末尾部分（附录）未读完。*
+*说明：所有数字均为论文作者报告，未经独立复现。待核实：Full-Duplex-Bench 一节依据其摘要；SID-Bench 正文与表 I 的样本数口径不完全一致（逐语言还是总计），本文未引用具体样本数以外的数字。*
