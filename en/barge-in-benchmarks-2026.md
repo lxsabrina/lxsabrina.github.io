@@ -18,7 +18,7 @@ tags:
 
 Barge-in is when the user speaks while the system is still talking. Early evaluations asked one question: did the system stop, and how fast? Several 2026 benchmarks split the problem further: **SID-Bench** (Qwen team) tests whether the system should stop; **EchoChain** (Labelbox) and **IHBench** (Boson AI) test whether what it says afterwards is right; **Instruct-FD** (Boson AI) tests whether it can change its turn-taking behaviour on instruction.
 
-This note relies only on those four papers (for Instruct-FD, only the abstract page). My reading is that the four benchmarks measure three different layers of interruption handling, so their numbers cannot be compared with each other. For anyone building a voice agent, the second layer deserves the most attention, because state updates after the stop are where users feel the awkwardness.
+This note reads those four papers closely and then lists the other common interruption and full-duplex test sets in one table (section 6). My reading is that the four benchmarks measure three different layers of interruption handling, so their numbers cannot be compared with each other. For anyone building a voice agent, the second layer deserves the most attention, because state updates after the stop are where users feel the awkwardness.
 
 ## Key conclusions
 
@@ -26,6 +26,7 @@ This note relies only on those four papers (for Instruct-FD, only the abstract p
 - Measuring reaction time alone misses most of the problem. In EchoChain no model passes more than 50% of conversations in full (best 48.5%); in IHBench, continuing a cut-off half-utterance is correct only 7% to 31% of the time for the GPT family.
 - Both "recovery" benchmarks rely on LLM judging, but validate it differently: IHBench compares against human annotators; EchoChain uses human-applied rubrics.
 - SID-Bench's APT turns false stops and missed stops into one unit, seconds. It is convenient, but the penalty rules are heuristic and the paper leaves correlation with human judgement to future work.
+- Other sets (Full-Duplex-Bench v1 to v3, FD-Bench, FLEXI, HumDial, M3-DuplexBench, Duplex Cue) are in section 6; the same system can score very differently under different scoring conventions (M3-DuplexBench example: 42.3% vs 95.0%).
 - All results are author-reported, on different targets and protocols. Read them as trends.
 
 ## A few concepts first
@@ -47,7 +48,7 @@ This note relies only on those four papers (for Instruct-FD, only the abstract p
 | SID-Bench | Qwen team | Semantic interruption detection | 3,700 clips (about 10 h) | FIR, IRL, APT, computed |
 | EchoChain | Labelbox | State-update reasoning after interruption | 200 interrupted conversations | Human rubrics, pass rates |
 | IHBench | Boson AI | Workflow recovery after interruption | 45 conversations, 428 interruption points | LLM judge, checked against humans |
-| Instruct-FD | Boson AI | Instructed turn-taking control | not given on the abstract page | LLM judge |
+| Instruct-FD | Boson AI | Instructed turn-taking control | 912 cases, 29 scenarios | LLM judge, checked against humans |
 
 ## 2. SID-Bench: should it stop?
 
@@ -125,9 +126,61 @@ Main findings (author-reported):
 
 ## 5. Instruct-FD: whose rules?
 
-I read only the abstract page. The question: applications want different turn-taking policies (proactive tutoring vs passive listening); can a full-duplex system change behaviour on instruction? The abstract says that among six full-duplex systems the best reaches 64.4% adherence, and proactive behaviours, especially the model's own backchanneling and interruption, are hardest. Dataset size, the judge model and per-system results are not on that page, so I do not go further.
+**Verdict**: it does not ask how a system interrupts by default, but whether instructions can change it; for most systems they barely do.
 
-## 6. The engineering view
+- **Behaviours**: proactive (the model acts while the user speaks): backchannel, interrupt, listen. Responsive (the model is speaking and the user overlaps): continue (hold the floor after a short continuer such as "mm-hmm"), acknowledge (yield and adapt to a correction, constraint or redirect).
+- **Data**: 29 scenarios (14 proactive, 15 responsive) and 912 test cases from 696 conversations; each conversation is reused under different instructions so only the instruction varies. Cases per instruction: backchannel 120, listen 312, interrupt 120, continue 120, acknowledge 240. Conversations are LLM-generated, TTS-synthesised and ASR-aligned to get ground-truth overlap timestamps.
+- **Scoring**: a judge model reads the instruction, a timestamped transcript and a reference transcript, and returns pass or fail. The instruction-adherence score IAS is the mean pass rate for an instruction; sensitivity ΔIAS is IAS with the instruction minus IAS on the same cases without it. The judge agrees with 180 manual annotations at 88.9%; an 11-participant human study reached 89.6% on 1,199 cases.
+
+Overall IAS (author-reported): Gemini 64.4%, PersonaPlex 47.0%, Fun-Audio-Chat 46.2%, MiniCPM-o 36.4%, Moshi 21.1%, Freeze-Omni 10.7%. Per behaviour:
+
+| System | Listen | Backchannel | Interrupt | Continue | Acknowledge |
+|---|---|---|---|---|---|
+| Freeze-Omni | 7.1 | 0.0 | 5.0 | 40.0 | 9.6 |
+| Fun-Audio-Chat | 90.7 | 0.0 | 9.2 | 94.2 | 5.4 |
+| Gemini | 72.4 | 50.0 | 5.8 | 71.7 | 86.3 |
+| MiniCPM-o | 59.6 | 12.5 | 1.7 | 97.5 | 5.4 |
+| Moshi | 12.8 | 1.7 | 11.7 | 88.3 | 12.0 |
+| PersonaPlex | 66.7 | 5.8 | 10.0 | 90.0 | 35.8 |
+
+Reading the table: "continue" is at or above 70% for everyone except Freeze-Omni, which suggests many systems simply default to not stopping; "acknowledge" (yield and adapt) is at or below 36% except for Gemini (86.3); "interrupt" never exceeds 12%. Most ΔIAS values are small; the significant gains are few: Gemini on backchannel (+42.5) and acknowledge (+11.7), MiniCPM-o on listen (+10.6), Fun-Audio-Chat on interrupt (+9.2), while Fun-Audio-Chat on acknowledge drops significantly (−11.2). So instructions did not really change behaviour for most systems. The paper also notes that good baseline turn-taking does not guarantee controllability, and that a model can be semantically right but mistimed and fail strict timing criteria.
+
+**Limitations** (stated by the paper): only five instruction types; about two model turns per conversation (user audio is pre-generated and cannot react to the model); English only; GPT-Realtime was excluded because its API needs explicit interruption signals; the judge depends on ASR quality and can misread instructions; backchannel timing shows a mismatch between offline timestamps and human perception.
+
+*Note: this section is based on roughly the first 100,000 characters of the paper's HTML; the last ~20,000 were not read.*
+
+## 6. Other test sets
+
+Beyond the four above, several sets are cited often. The table groups them by what they measure; all numbers come from the respective papers, scales differ, and they cannot be compared across rows.
+
+| Benchmark | Team | Measures | Size and data | Scoring and highlights |
+|---|---|---|---|---|
+| Full-Duplex-Bench (v1) | NTU, UW, Berkeley et al. | Four turn-taking dimensions: pause handling, backchanneling, turn-taking, interruption | Size not on the abstract page | Automatic, reproducible metrics; specifics not read |
+| Full-Duplex-Bench v1.5 | NTU, UW, Berkeley, CMU | Overlap handling: user interruption, user backchannel, talking to others, background speech | 499 synthesised trials: 200 interruptions, 99 backchannels, 100 talking-to-others, 100 background | Behaviour class (respond / resume / uncertain), stop and response latency, prosody; 5 systems |
+| Full-Duplex-Bench-v2 | NTU et al. | Multi-turn: an automated examiner pushes staged goals at fast and slow pacing | Four task families: daily, correction, entity tracking, safety | Turn-taking fluency, multi-turn instruction following, task competence; abstract says systems struggle with overlap, handle corrections poorly and lose track of referents |
+| Full-Duplex-Bench-v3 | NTU, NVIDIA | Multi-step tool use under real disfluent speech | 100 human recordings, 12 speakers, 4 domains, 5 disfluency types | Tool-selection F1, argument accuracy, Pass@1, latency split; 6 systems |
+| FD-Bench | NTU, Alibaba | Interruption handling and response quality | 293 simulated conversations, about 1,200 interruptions, about 40 h | SRR, SIR, EIR, NIR and others; 3 open-source systems |
+| FLEXI | Northeastern Univ. et al. | Six scenarios incl. user/model interrupt and user/model backchannel | Synthetic, size not given | Takeover rate, latency and others; 4 systems |
+| ICASSP 2026 HumDial (Track II) | ASLP@NPU et al. | Interruption and rejection (backchannel, pause, third-party speech) | 5,000 test utterances, performed by actors | 0.4×interruption + 0.4×rejection + 0.2×first-response delay |
+| M3-DuplexBench | NTT | Multi-turn, Japanese and English, chat and QA | About 4.1 h, 158 dialogues | Takeover rate, timing error, stop latency, content scores |
+| Duplex Cue | Lu et al. (see paper) | Continue, adapt or yield under overlapping listener speech | 300 human-confirmed cues, 208 pairs kept | Single-model case study: PersonaPlex |
+
+A few details worth noting.
+
+- **Full-Duplex-Bench v1.5**: on interruptions GPT-4o Realtime responds most (0.78) with a 0.23 s stop latency; Gemini and Nova Sonic often keep talking (resume 0.55 and 0.71) and take over 2 s to stop. On backchannels it flips: Nova Sonic (0.98) and Gemini (0.93) ignore them best, while GPT-4o often stops for them. The paper's takeaway: systems that yield fast handle real interruptions well but over-react to incidental speech, and vice versa.
+- **Full-Duplex-Bench-v3**: GPT-Realtime has the best Pass@1 (0.600) at 6.89 s latency; Gemini Live 3.1 is fastest (4.25 s) but has the lowest turn-take rate (78.0%); the cascaded baseline takes every turn (100%) but has the highest latency (10.12 s) and the lowest self-correction score (0.176). Self-corrections and hard multi-step scenarios are the most consistent failure points.
+- **FD-Bench**: at the easiest setting (gaps of 6 to 10 s) the successful-reply rate SRR is 61.7% for Moshi, 11.3% for Freeze-Omni and 26.9% for VITA-1.5; with denser interruptions (gaps of 2 to 4 s) Moshi falls to 34.1%. Noise also lowers scores.
+- **FLEXI**: open-source models often take over too early, and their model-initiated interruptions mostly reflect poor turn control, not real emergency detection; all models are weak at backchanneling.
+- **HumDial Track II**: rejection scores are consistently lower than interruption scores; telling valid user turns from background speech is the hard part. The paper summarises a challenge rather than comparing commercial or open-source models.
+- **M3-DuplexBench**: scores are sensitive to metric definitions. Moshi's chat turn-shift takeover rate is 42.3% under its scoring and 95.0% under FDB-style scoring; adding 5 s of initial silence raises it from 42.3% to 88.8%. A direct warning for cross-paper comparison.
+- **Duplex Cue**: on 66 collaborative samples, human speakers adapt within the turn 68.2% of the time against 34.8% for PersonaPlex (continue unchanged 42.4%, yield 22.7%). A single-model case study, so only a signal.
+
+**Two observations** (my own summary, not the papers' claims):
+
+1. The 2025 sets (Full-Duplex-Bench v1/v1.5, FD-Bench, FLEXI) focus on timing and stopping correctly; the 2026 sets (EchoChain, IHBench, Full-Duplex-Bench-v2/v3, Instruct-FD, Duplex Cue) move to what happens after the stop and whether behaviour can be controlled.
+2. Nearly all of them rely on synthetic speech or LLM judging and are mostly English; M3-DuplexBench (with Japanese), SID-Bench and HumDial (with Chinese) are among the exceptions.
+
+## 7. The engineering view
 
 **Where each layer fits**
 
@@ -135,7 +188,7 @@ I read only the abstract page. The question: applications want different turn-ta
 |---|---|---|
 | Detect and stop (SID-Bench) | Choosing or training an interruption detector | Validate on your own audio and language; data covers Chinese and English only |
 | Recovery (EchoChain, IHBench) | Evaluating end-to-end speech models or voice agents | Sample-check the judge yourself; synthetic data differs from real users |
-| Policy (Instruct-FD) | Products needing different turn-taking styles | Details need the full paper |
+| Policy (Instruct-FD) | Products needing different turn-taking styles | English only, about two model turns |
 
 **Comparison caveats**
 
@@ -161,6 +214,16 @@ Barge-in is not one metric but a chain: stop correctly, say the right thing next
 - [EchoChain: A Full-Duplex Benchmark for State-Update Reasoning Under Interruptions (arXiv 2604.16456)](https://arxiv.org/abs/2604.16456)
 - [IHBench: Evaluating Post-Interruption Recovery in Voice Agents with Structured Workflows (arXiv 2606.19595)](https://arxiv.org/abs/2606.19595)
 - [Instruct-FD: Can Your Full-Duplex Speech System Follow Turn-Taking Instructions? (arXiv 2607.20460)](https://arxiv.org/abs/2607.20460)
+- [Full-Duplex-Bench (arXiv 2503.04721)](https://arxiv.org/abs/2503.04721)
+- [Full-Duplex-Bench v1.5 (arXiv 2507.23159)](https://arxiv.org/abs/2507.23159)
+- [Full-Duplex-Bench-v2 (arXiv 2510.07838)](https://arxiv.org/abs/2510.07838)
+- [Full-Duplex-Bench-v3 (arXiv 2604.04847)](https://arxiv.org/abs/2604.04847)
+- [FD-Bench (arXiv 2507.19040)](https://arxiv.org/abs/2507.19040)
+- [FLEXI (arXiv 2509.22243)](https://arxiv.org/abs/2509.22243)
+- [ICASSP 2026 HumDial Challenge (arXiv 2601.05564)](https://arxiv.org/abs/2601.05564)
+- [M3-DuplexBench (arXiv 2607.29125)](https://arxiv.org/abs/2607.29125)
+- [Continue, Adapt, or Yield: Duplex Cue (arXiv 2609.13117)](https://arxiv.org/abs/2609.13117)
+- [Full-Duplex-Bench repository](https://github.com/DanielLin94144/Full-Duplex-Bench)
 
 Related reading: [Seven Full-Duplex Speech Systems]({{ '/en/full-duplex-listening-time/' | relative_url }}), and [Reading Diffuplex]({{ '/en/diffuplex-discrete-diffusion-full-duplex/' | relative_url }}).
 
