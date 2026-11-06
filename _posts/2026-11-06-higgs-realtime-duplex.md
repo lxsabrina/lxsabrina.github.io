@@ -4,7 +4,7 @@ subtitle:   前端小模型加后端大模型，音视频流都算进一份很�
 title_en:   "Reading Higgs Realtime Duplex: A 160 ms-Chunk Full-Duplex Model and Its 2.6K-Tokens-per-Minute Budget"
 subtitle_en: "A small front model plus a large backend model, with every audio and video stream counted in one tight token budget"
 en_url:     /en/higgs-realtime-duplex/
-date:       2026-11-06 12:00:00 +0800
+date:       2026-11-06 09:00:00 +0800
 author:     Zhang Xian
 tags:
     - 语音智能体
