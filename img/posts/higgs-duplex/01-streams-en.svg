@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 316" width="680" height="316" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>One model, many parallel streams (illustration)</title><desc>An illustration: input streams are cut into 160 ms chunks for the front model, which emits voice and face and calls tools and a backend model asynchronously</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="315" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="34" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">One model, many parallel streams (illustration)</text>
+<rect x="20" y="56" width="130" height="38" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="85.0" y="79.0" font-size="12.5" fill="#2C2C2A" text-anchor="middle" font-weight="bold">User voice</text>
+<line x1="150" y1="75" x2="205" y2="107.0" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="102" width="130" height="38" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="85.0" y="125.0" font-size="12.5" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Camera / screen</text>
+<line x1="150" y1="121" x2="205" y2="121.0" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="148" width="130" height="38" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="85.0" y="171.0" font-size="12.5" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Tool results</text>
+<line x1="150" y1="167" x2="205" y2="135.0" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="194" width="130" height="38" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="85.0" y="217.0" font-size="12.5" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Backend replies</text>
+<line x1="150" y1="213" x2="205" y2="149.0" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="210" y="86" width="170" height="86" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="295.0" y="127.0" font-size="12.5" fill="#534AB7" text-anchor="middle" font-weight="bold">Front model</text>
+<text x="295.0" y="144.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">45B MoE</text>
+<rect x="450" y="56" width="210" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="555.0" y="78.0" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Audio decoder</text>
+<text x="555.0" y="95.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">causal flow matching</text>
+<rect x="450" y="112" width="210" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="555.0" y="134.0" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Video decoder</text>
+<text x="555.0" y="151.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">causal DiT</text>
+<line x1="380" y1="115" x2="450" y2="80" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="380" y1="145" x2="450" y2="136" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="555" y="48" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal"></text>
+<rect x="210" y="206" width="170" height="40" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="295.0" y="230.0" font-size="12.5" fill="#993C1D" text-anchor="middle" font-weight="bold">Tools (async)</text>
+<rect x="450" y="206" width="210" height="40" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="555.0" y="230.0" font-size="12.5" fill="#993C1D" text-anchor="middle" font-weight="bold">Backend model</text>
+<text x="555" y="266" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">shared context, slow reasoning</text>
+<line x1="295" y1="172" x2="295" y2="206" stroke="#888780" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<line x1="380" y1="226" x2="450" y2="226" stroke="#888780" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<text x="340" y="298" font-size="12" fill="#5F5E5A" text-anchor="middle" font-weight="normal">Everything is cut into 160 ms chunks; silence is a chunk too</text>
+</svg>
