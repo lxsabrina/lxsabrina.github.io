@@ -5,7 +5,7 @@ permalink:  /en/higgs-realtime-duplex/
 title:      "Reading Higgs Realtime Duplex: A 160 ms-Chunk Full-Duplex Model and Its 2.6K-Tokens-per-Minute Budget"
 subtitle:   "A small front model plus a large backend model, with every audio and video stream counted in one tight token budget"
 zh_url:     /2026/11/06/higgs-realtime-duplex/
-date:       2026-11-06 12:00:00 +0800
+date:       2026-11-06 09:00:00 +0800
 author:     Zhang Xian
 tags:
     - Voice agents
