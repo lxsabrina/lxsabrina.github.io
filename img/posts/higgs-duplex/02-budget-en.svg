@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 336" width="680" height="336" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>Token budget per minute (hand-computed from the stated rates)</title><desc>Audio in, audio out, video in and face out each take a share; about 2.6K tokens per minute in total</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="335" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="34" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Token budget per minute (hand-computed from the stated rates)</text>
+<text x="20" y="74" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">Audio in</text>
+<text x="20" y="92" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">1 token / chunk</text>
+<rect x="300" y="60" width="165.0" height="34" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="475.0" y="82" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">375</text>
+<text x="20" y="128" font-size="13" fill="#534AB7" text-anchor="start" font-weight="bold">Audio out</text>
+<text x="20" y="146" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">2 tokens / chunk</text>
+<rect x="300" y="114" width="330.0" height="34" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="640.0" y="136" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">750</text>
+<text x="20" y="182" font-size="13" fill="#0F6E56" text-anchor="start" font-weight="bold">Video in</text>
+<text x="20" y="200" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">~12 tokens / frame, 1 frame per 6 chunks</text>
+<rect x="300" y="168" width="330.0" height="34" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="640.0" y="190" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">750</text>
+<text x="20" y="236" font-size="13" fill="#993C1D" text-anchor="start" font-weight="bold">Face out</text>
+<text x="20" y="254" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">2 latents / chunk</text>
+<rect x="300" y="222" width="330.0" height="34" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="640.0" y="244" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">750</text>
+<rect x="20" y="280" width="640" height="36" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="340" y="303" font-size="12.5" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Total 2,625 ≈ 2.6K tokens / minute (no thinking, no tools)</text>
+</svg>
