@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 264" width="680" height="264" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>运行时检查流程（示意图）</title><desc>示意图：工具调用在执行前经过 LLM 取值与 Z3 判定</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="263" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="34" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">运行时检查流程（示意图）</text>
+<rect x="20" y="56" width="116" height="70" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="78" y="84" font-size="13" fill="#2C2C2A" text-anchor="middle" font-weight="bold">1 智能体</text>
+<text x="78" y="108" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">候选调用</text>
+<line x1="136" y1="91" x2="152" y2="91" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="152" y="56" width="116" height="70" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="210" y="84" font-size="13" fill="#2C2C2A" text-anchor="middle" font-weight="bold">2 取参数模式</text>
+<text x="210" y="108" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">策略变量清单</text>
+<line x1="268" y1="91" x2="284" y2="91" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="284" y="56" width="116" height="70" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="342" y="84" font-size="13" fill="#534AB7" text-anchor="middle" font-weight="bold">3 LLM 取值</text>
+<text x="342" y="108" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">抽取具体值</text>
+<line x1="400" y1="91" x2="416" y2="91" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="416" y="56" width="116" height="70" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="474" y="84" font-size="13" fill="#0F6E56" text-anchor="middle" font-weight="bold">4 Z3 判定</text>
+<text x="474" y="108" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">SAT 或 UNSAT</text>
+<line x1="532" y1="91" x2="548" y2="91" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="548" y="56" width="116" height="70" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="606" y="84" font-size="13" fill="#993C1D" text-anchor="middle" font-weight="bold">5 放行 / 拦截</text>
+<text x="606" y="108" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">放行或拦截</text>
+<rect x="20" y="150" width="640" height="36" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340" y="173" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="bold">SAT：执行工具</text>
+<rect x="20" y="196" width="640" height="48" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="340" y="216" font-size="12" fill="#993C1D" text-anchor="middle" font-weight="bold">UNSAT：拦截，把最小不可满足核连同提示发回智能体重规划</text>
+<text x="340" y="234" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">（最多 3 次，之后交还用户）</text>
+</svg>

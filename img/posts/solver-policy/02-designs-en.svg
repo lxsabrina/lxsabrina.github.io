@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 316" width="680" height="316" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>Four ways to translate the policy</title><desc>Four designs for turning natural-language policy into SMT-LIB and the outcomes the paper reports</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="315" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="34" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Four ways to translate the policy</text>
+<rect x="20" y="56" width="640" height="50" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="34" y="78" font-size="13" fill="#993C1D" text-anchor="start" font-weight="bold">Design 1</text>
+<text x="34" y="96" font-size="11.5" fill="#5F5E5A" text-anchor="start" font-weight="normal">LLM writes SMT-LIB directly</text>
+<text x="300" y="87" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="normal">Syntax errors, undefined symbols; not viable</text>
+<rect x="20" y="118" width="640" height="50" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="34" y="140" font-size="13" fill="#888780" text-anchor="start" font-weight="bold">Design 2</text>
+<text x="34" y="158" font-size="11.5" fill="#5F5E5A" text-anchor="start" font-weight="normal">Iterative repair (Z3 errors fed back)</text>
+<text x="300" y="149" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="normal">Valid syntax, ~50–60 lines, key constraints missing</text>
+<rect x="20" y="180" width="640" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="34" y="202" font-size="13" fill="#534AB7" text-anchor="start" font-weight="bold">Design 3</text>
+<text x="34" y="220" font-size="11.5" fill="#5F5E5A" text-anchor="start" font-weight="normal">Bedrock Automated Reasoning</text>
+<text x="300" y="211" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="normal">~600 lines, ~95% coverage by LLM judge, still underconstrained</text>
+<rect x="20" y="242" width="640" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="34" y="264" font-size="13" fill="#0F6E56" text-anchor="start" font-weight="bold">Design 4</text>
+<text x="34" y="282" font-size="11.5" fill="#5F5E5A" text-anchor="start" font-weight="normal">Design 3 + custom prompts + manual tuning</text>
+<text x="300" y="273" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="normal">Used in the evaluation; no coverage figure given</text>
+</svg>
