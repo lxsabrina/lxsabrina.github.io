@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 364" width="680" height="364" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>EVA-A：pass@k 对 pass^k</title><desc>根据论文表 4 重绘</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5F5E5A"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="363" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="28" font-size="15" fill="#2C2C2A" text-anchor="middle" font-weight="bold">EVA-A（k=5）：峰值与可靠性的差距</text>
+<text x="222" y="71" font-size="11" fill="#2C2C2A" text-anchor="end">Cohere / Gemma-4-26B</text>
+<rect x="230" y="60" width="158.1" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="70" width="22.8" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="392.08" y="68" font-size="10" fill="#534AB7" text-anchor="start">0.416</text>
+<text x="256.8" y="78" font-size="10" fill="#993C1D" text-anchor="start">0.060</text>
+<text x="222" y="93" font-size="11" fill="#2C2C2A" text-anchor="end">Scribe / Gemini-3-Flash</text>
+<rect x="230" y="82" width="277.4" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="92" width="102.2" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="511.4" y="90" font-size="10" fill="#534AB7" text-anchor="start">0.730</text>
+<text x="336.22" y="100" font-size="10" fill="#993C1D" text-anchor="start">0.269</text>
+<text x="222" y="115" font-size="11" fill="#2C2C2A" text-anchor="end">Ink / Haiku-4.5</text>
+<rect x="230" y="104" width="196.1" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="114" width="21.7" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="430.08000000000004" y="112" font-size="10" fill="#534AB7" text-anchor="start">0.516</text>
+<text x="255.66" y="122" font-size="10" fill="#993C1D" text-anchor="start">0.057</text>
+<text x="222" y="137" font-size="11" fill="#2C2C2A" text-anchor="end">Nova / GPT-5.4</text>
+<rect x="230" y="126" width="307.4" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="136" width="82.5" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="541.4200000000001" y="134" font-size="10" fill="#534AB7" text-anchor="start">0.809</text>
+<text x="316.46" y="144" font-size="10" fill="#993C1D" text-anchor="start">0.217</text>
+<text x="222" y="159" font-size="11" fill="#2C2C2A" text-anchor="end">Nova / GPT-5.4-mini</text>
+<rect x="230" y="148" width="170.2" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="158" width="23.6" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="404.24" y="156" font-size="10" fill="#534AB7" text-anchor="start">0.448</text>
+<text x="257.56" y="166" font-size="10" fill="#993C1D" text-anchor="start">0.062</text>
+<text x="222" y="181" font-size="11" fill="#2C2C2A" text-anchor="end">Parakeet / Gemma-4-31B</text>
+<rect x="230" y="170" width="284.2" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="180" width="64.2" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="518.24" y="178" font-size="10" fill="#534AB7" text-anchor="start">0.748</text>
+<text x="298.22" y="188" font-size="10" fill="#993C1D" text-anchor="start">0.169</text>
+<text x="222" y="203" font-size="11" fill="#2C2C2A" text-anchor="end">Whisper / Qwen3.5-27B</text>
+<rect x="230" y="192" width="196.8" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="202" width="12.5" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="430.84000000000003" y="200" font-size="10" fill="#534AB7" text-anchor="start">0.518</text>
+<text x="246.54" y="210" font-size="10" fill="#993C1D" text-anchor="start">0.033</text>
+<text x="222" y="225" font-size="11" fill="#2C2C2A" text-anchor="end">Gemini-3-Flash + TTS (hybrid)</text>
+<rect x="230" y="214" width="308.6" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="224" width="60.0" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="542.56" y="222" font-size="10" fill="#534AB7" text-anchor="start">0.812</text>
+<text x="294.04" y="232" font-size="10" fill="#993C1D" text-anchor="start">0.158</text>
+<text x="222" y="247" font-size="11" fill="#2C2C2A" text-anchor="end">Ultravox (hybrid)</text>
+<rect x="230" y="236" width="191.1" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="246" width="41.0" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="425.14" y="244" font-size="10" fill="#534AB7" text-anchor="start">0.503</text>
+<text x="275.04" y="254" font-size="10" fill="#993C1D" text-anchor="start">0.108</text>
+<text x="222" y="269" font-size="11" fill="#2C2C2A" text-anchor="end">Gemini-3.1-Flash-Live (S2S)</text>
+<rect x="230" y="258" width="209.8" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="268" width="50.2" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="443.76" y="266" font-size="10" fill="#534AB7" text-anchor="start">0.552</text>
+<text x="284.16" y="276" font-size="10" fill="#993C1D" text-anchor="start">0.132</text>
+<text x="222" y="291" font-size="11" fill="#2C2C2A" text-anchor="end">GPT-Realtime-1.5 (S2S)</text>
+<rect x="230" y="280" width="269.8" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="290" width="107.5" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="503.8" y="288" font-size="10" fill="#534AB7" text-anchor="start">0.710</text>
+<text x="341.53999999999996" y="298" font-size="10" fill="#993C1D" text-anchor="start">0.283</text>
+<text x="222" y="313" font-size="11" fill="#2C2C2A" text-anchor="end">GPT-Realtime-mini (S2S)</text>
+<rect x="230" y="302" width="120.8" height="8" fill="#EEEDFE" stroke="#534AB7"/><rect x="230" y="312" width="22.4" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="354.84000000000003" y="310" font-size="10" fill="#534AB7" text-anchor="start">0.318</text>
+<text x="256.41999999999996" y="320" font-size="10" fill="#993C1D" text-anchor="start">0.059</text>
+<rect x="230" y="338" width="14" height="8" fill="#EEEDFE" stroke="#534AB7"/><text x="250" y="346" font-size="11" fill="#2C2C2A" text-anchor="start">pass@k</text>
+<rect x="330" y="338" width="14" height="8" fill="#FAECE7" stroke="#993C1D"/><text x="350" y="346" font-size="11" fill="#2C2C2A" text-anchor="start">pass^k</text>
+<text x="30" y="346" font-size="10.5" fill="#5F5E5A" text-anchor="start">数值取自论文表 4</text>
+</svg>
