@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" width="680" height="330" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>The review loop</title><desc>An illustration of how offline experiments and online evaluation feed each other</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5F5E5A"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="329" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="28" font-size="15" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Offline experiments + online evaluation loop (illustration)</text>
+<text x="20" y="58" font-size="12" fill="#534AB7" text-anchor="start" font-weight="bold">Offline</text>
+<rect x="20" y="68" width="140" height="60" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="90" y="93" font-size="12.5" fill="#534AB7" text-anchor="middle" font-weight="bold">Dataset</text>
+<text x="90" y="113" font-size="10.5" fill="#5F5E5A" text-anchor="middle">items + expected</text>
+<line x1="161" y1="98" x2="183" y2="98" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="185" y="68" width="140" height="60" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="255" y="93" font-size="12.5" fill="#534AB7" text-anchor="middle" font-weight="bold">Experiment</text>
+<text x="255" y="113" font-size="10.5" fill="#5F5E5A" text-anchor="middle">run the app</text>
+<line x1="326" y1="98" x2="348" y2="98" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="350" y="68" width="140" height="60" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="420" y="93" font-size="12.5" fill="#534AB7" text-anchor="middle" font-weight="bold">Scoring</text>
+<text x="420" y="113" font-size="10.5" fill="#5F5E5A" text-anchor="middle">code + judge</text>
+<line x1="491" y1="98" x2="513" y2="98" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="515" y="68" width="140" height="60" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="585" y="93" font-size="12.5" fill="#534AB7" text-anchor="middle" font-weight="bold">CI gate</text>
+<text x="585" y="113" font-size="10.5" fill="#5F5E5A" text-anchor="middle">fail below threshold</text>
+<text x="20" y="168" font-size="12" fill="#0F6E56" text-anchor="start" font-weight="bold">Online</text>
+<rect x="20" y="178" width="140" height="60" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="90" y="203" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Live traces</text>
+<text x="90" y="223" font-size="10.5" fill="#5F5E5A" text-anchor="middle">real conversations</text>
+<line x1="161" y1="208" x2="183" y2="208" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="185" y="178" width="140" height="60" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="255" y="203" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Rule</text>
+<text x="255" y="223" font-size="10.5" fill="#5F5E5A" text-anchor="middle">filter + sampling</text>
+<line x1="326" y1="208" x2="348" y2="208" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="350" y="178" width="140" height="60" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="420" y="203" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Evaluator</text>
+<text x="420" y="223" font-size="10.5" fill="#5F5E5A" text-anchor="middle">code / LLM judge</text>
+<line x1="491" y1="208" x2="513" y2="208" stroke="#5F5E5A" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="515" y="178" width="140" height="60" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="585" y="203" font-size="12.5" fill="#0F6E56" text-anchor="middle" font-weight="bold">Annotation queue</text>
+<text x="585" y="223" font-size="10.5" fill="#5F5E5A" text-anchor="middle">human review</text>
+<path d="M575 240 V262 H8 V98 H18" fill="none" stroke="#993C1D" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#a)"/>
+<text x="340" y="278" font-size="11" fill="#993C1D" text-anchor="middle">failures go back into the dataset; human labels calibrate the judge</text>
+<text x="340" y="312" font-size="10.5" fill="#5F5E5A" text-anchor="middle">Structure follows the Langfuse docs, simplified</text>
+</svg>
