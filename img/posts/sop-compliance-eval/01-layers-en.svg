@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 372" width="680" height="372" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>Five layers of compliance</title><desc>An illustration of five layers one can check when evaluating compliance</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5F5E5A"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="371" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="28" font-size="15" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Five layers of compliance one can check (illustration)</text>
+<text x="120" y="58" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="bold">Layer</text>
+<text x="300" y="58" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="bold">Question</text>
+<text x="450" y="58" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="bold">Checked by</text>
+<text x="595" y="58" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="bold">Examples</text>
+<rect x="14" y="68" width="652" height="50" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="24" y="98" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">1 Final state</text>
+<text x="220" y="98" font-size="11" fill="#2C2C2A" text-anchor="start">is the outcome right</text>
+<text x="400" y="98" font-size="11" fill="#2C2C2A" text-anchor="start">DB state diff</text>
+<text x="540" y="90" font-size="10.5" fill="#5F5E5A" text-anchor="start">tau-bench,</text>
+<text x="540" y="106" font-size="10.5" fill="#5F5E5A" text-anchor="start">tau2-bench, SOP-Bench</text>
+<rect x="14" y="126" width="652" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="24" y="156" font-size="13" fill="#534AB7" text-anchor="start" font-weight="bold">2 Action permitted</text>
+<text x="220" y="156" font-size="11" fill="#2C2C2A" text-anchor="start">was each call allowed</text>
+<text x="400" y="156" font-size="11" fill="#2C2C2A" text-anchor="start">rule verifier / oracle</text>
+<text x="540" y="148" font-size="10.5" fill="#5F5E5A" text-anchor="start">SOPBench,</text>
+<text x="540" y="164" font-size="10.5" fill="#5F5E5A" text-anchor="start">ST-WebAgentBench</text>
+<rect x="14" y="184" width="652" height="50" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="24" y="214" font-size="13" fill="#0F6E56" text-anchor="start" font-weight="bold">3 Order and completeness</text>
+<text x="220" y="214" font-size="11" fill="#2C2C2A" text-anchor="start">required steps, right order</text>
+<text x="400" y="214" font-size="11" fill="#2C2C2A" text-anchor="start">trace match / LTL</text>
+<text x="540" y="206" font-size="10.5" fill="#5F5E5A" text-anchor="start">JourneyBench,</text>
+<text x="540" y="222" font-size="10.5" fill="#5F5E5A" text-anchor="start">AgentLTL, ContrAgent</text>
+<rect x="14" y="242" width="652" height="50" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="24" y="272" font-size="13" fill="#993C1D" text-anchor="start" font-weight="bold">4 Arguments and wording</text>
+<text x="220" y="272" font-size="11" fill="#2C2C2A" text-anchor="start">values, disclosures, phrasing</text>
+<text x="400" y="272" font-size="11" fill="#2C2C2A" text-anchor="start">exact match + LLM judge</text>
+<text x="540" y="264" font-size="10.5" fill="#5F5E5A" text-anchor="start">SAGE,</text>
+<text x="540" y="280" font-size="10.5" fill="#5F5E5A" text-anchor="start">TED, LiveMCP-101</text>
+<rect x="14" y="300" width="652" height="50" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="24" y="330" font-size="13" fill="#2C2C2A" text-anchor="start" font-weight="bold">5 Robust and reliable</text>
+<text x="220" y="330" font-size="11" fill="#2C2C2A" text-anchor="start">pressure, simulator errors, repeats</text>
+<text x="400" y="330" font-size="11" fill="#2C2C2A" text-anchor="start">pass^k + adversarial cases</text>
+<text x="540" y="322" font-size="10.5" fill="#5F5E5A" text-anchor="start">tau-bench,</text>
+<text x="540" y="338" font-size="10.5" fill="#5F5E5A" text-anchor="start">StressSim, STAGE</text>
+</svg>
