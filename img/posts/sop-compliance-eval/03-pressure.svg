@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="680" height="320" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>SOPBench 施压前后</title><desc>根据论文图 6 的标注，模型对应关系由横轴顺序推断</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5F5E5A"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="319" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="28" font-size="14" fill="#2C2C2A" text-anchor="middle" font-weight="bold">一句催促对通过率的影响（Healthcare + University，%）</text>
+<text x="192" y="66" font-size="11" fill="#2C2C2A" text-anchor="end">o4-mini-high</text>
+<rect x="200" y="50" width="356.0" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="63" width="142.0" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="560.984" y="60" font-size="10" fill="#0F6E56" text-anchor="start">93.68</text>
+<text x="346.96799999999996" y="73" font-size="10" fill="#993C1D" text-anchor="start">37.36</text>
+<text x="192" y="96" font-size="11" fill="#2C2C2A" text-anchor="end">Gemini-2.0-Flash-Thinking</text>
+<rect x="200" y="80" width="325.4" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="93" width="111.4" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="530.394" y="90" font-size="10" fill="#0F6E56" text-anchor="start">85.63</text>
+<text x="316.378" y="103" font-size="10" fill="#993C1D" text-anchor="start">29.31</text>
+<text x="192" y="126" font-size="11" fill="#2C2C2A" text-anchor="end">GPT-4.1</text>
+<rect x="200" y="110" width="275.2" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="123" width="109.2" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="480.158" y="120" font-size="10" fill="#0F6E56" text-anchor="start">72.41</text>
+<text x="314.212" y="133" font-size="10" fill="#993C1D" text-anchor="start">28.74</text>
+<text x="192" y="156" font-size="11" fill="#2C2C2A" text-anchor="end">Claude-3.7-Sonnet</text>
+<rect x="200" y="140" width="268.6" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="153" width="37.1" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="473.622" y="150" font-size="10" fill="#0F6E56" text-anchor="start">70.69</text>
+<text x="242.126" y="163" font-size="10" fill="#993C1D" text-anchor="start">9.77</text>
+<text x="192" y="186" font-size="11" fill="#2C2C2A" text-anchor="end">Llama3.1-70B</text>
+<rect x="200" y="170" width="203.1" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="183" width="54.6" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="408.11" y="180" font-size="10" fill="#0F6E56" text-anchor="start">53.45</text>
+<text x="259.606" y="193" font-size="10" fill="#993C1D" text-anchor="start">14.37</text>
+<text x="192" y="216" font-size="11" fill="#2C2C2A" text-anchor="end">Qwen2.5-32B</text>
+<rect x="200" y="200" width="174.7" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="213" width="61.1" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="379.724" y="210" font-size="10" fill="#0F6E56" text-anchor="start">45.98</text>
+<text x="266.142" y="223" font-size="10" fill="#993C1D" text-anchor="start">16.09</text>
+<text x="192" y="246" font-size="11" fill="#2C2C2A" text-anchor="end">Qwen2.5-72B</text>
+<rect x="200" y="230" width="117.9" height="11" fill="#E1F5EE" stroke="#0F6E56"/><rect x="200" y="243" width="30.6" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="322.914" y="240" font-size="10" fill="#0F6E56" text-anchor="start">31.03</text>
+<text x="235.59" y="253" font-size="10" fill="#993C1D" text-anchor="start">8.05</text>
+<rect x="200" y="290" width="14" height="9" fill="#E1F5EE" stroke="#0F6E56"/><text x="220" y="299" font-size="11" fill="#2C2C2A" text-anchor="start">无催促</text>
+<rect x="320" y="290" width="14" height="9" fill="#FAECE7" stroke="#993C1D"/><text x="340" y="299" font-size="11" fill="#2C2C2A" text-anchor="start">追加催促语</text>
+</svg>

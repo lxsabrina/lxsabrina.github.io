@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 350" width="680" height="350" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>Outcome pass vs procedure clean</title><desc>Redrawn from Table 9 of the ContrAgent paper</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5F5E5A"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="349" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="28" font-size="14" fill="#2C2C2A" text-anchor="middle" font-weight="bold">tau2-bench (k=4): outcome pass vs outcome pass and procedure clean (%)</text>
+<text x="182" y="66" font-size="11" fill="#2C2C2A" text-anchor="end">Retail · Claude 3.7</text>
+<rect x="190" y="50" width="333.8" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="63" width="1.0" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="528.76" y="60" font-size="10" fill="#534AB7" text-anchor="start">59.6</text>
+<text x="196" y="73" font-size="10" fill="#993C1D" text-anchor="start">0.0</text>
+<text x="182" y="96" font-size="11" fill="#2C2C2A" text-anchor="end">Retail · GPT-4.1</text>
+<rect x="190" y="80" width="294.6" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="93" width="245.8" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="489.56" y="90" font-size="10" fill="#534AB7" text-anchor="start">52.6</text>
+<text x="440.84" y="103" font-size="10" fill="#993C1D" text-anchor="start">43.9</text>
+<text x="182" y="126" font-size="11" fill="#2C2C2A" text-anchor="end">Retail · GPT-4.1-mini</text>
+<rect x="190" y="110" width="216.2" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="123" width="53.8" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="411.15999999999997" y="120" font-size="10" fill="#534AB7" text-anchor="start">38.6</text>
+<text x="248.76" y="133" font-size="10" fill="#993C1D" text-anchor="start">9.6</text>
+<text x="182" y="156" font-size="11" fill="#2C2C2A" text-anchor="end">Retail · o4-mini</text>
+<rect x="190" y="140" width="255.4" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="153" width="191.5" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="450.36" y="150" font-size="10" fill="#534AB7" text-anchor="start">45.6</text>
+<text x="386.52" y="163" font-size="10" fill="#993C1D" text-anchor="start">34.2</text>
+<text x="182" y="186" font-size="11" fill="#2C2C2A" text-anchor="end">Airline · Claude 3.7</text>
+<rect x="190" y="170" width="201.6" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="183" width="1.0" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="396.6" y="180" font-size="10" fill="#534AB7" text-anchor="start">36.0</text>
+<text x="196" y="193" font-size="10" fill="#993C1D" text-anchor="start">0.0</text>
+<text x="182" y="216" font-size="11" fill="#2C2C2A" text-anchor="end">Airline · GPT-4.1</text>
+<rect x="190" y="200" width="224.0" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="213" width="134.4" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="419.0" y="210" font-size="10" fill="#534AB7" text-anchor="start">40.0</text>
+<text x="329.4" y="223" font-size="10" fill="#993C1D" text-anchor="start">24.0</text>
+<text x="182" y="246" font-size="11" fill="#2C2C2A" text-anchor="end">Airline · GPT-4.1-mini</text>
+<rect x="190" y="230" width="145.6" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="243" width="78.4" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="340.6" y="240" font-size="10" fill="#534AB7" text-anchor="start">26.0</text>
+<text x="273.4" y="253" font-size="10" fill="#993C1D" text-anchor="start">14.0</text>
+<text x="182" y="276" font-size="11" fill="#2C2C2A" text-anchor="end">Airline · o4-mini</text>
+<rect x="190" y="260" width="212.8" height="11" fill="#EEEDFE" stroke="#534AB7"/><rect x="190" y="273" width="168.0" height="11" fill="#FAECE7" stroke="#993C1D"/><text x="407.79999999999995" y="270" font-size="10" fill="#534AB7" text-anchor="start">38.0</text>
+<text x="363.0" y="283" font-size="10" fill="#993C1D" text-anchor="start">30.0</text>
+<rect x="190" y="320" width="14" height="9" fill="#EEEDFE" stroke="#534AB7"/><text x="210" y="329" font-size="11" fill="#2C2C2A" text-anchor="start">pass4 (outcome only)</text>
+<rect x="380" y="320" width="14" height="9" fill="#FAECE7" stroke="#993C1D"/><text x="400" y="329" font-size="11" fill="#2C2C2A" text-anchor="start">joint4 (outcome + procedure clean)</text>
+</svg>
