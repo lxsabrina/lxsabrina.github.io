@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 418" width="680" height="418" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>EVA-A：峰值与可靠性之间的差距（k=5，按 pass^k 排序）</title><desc>12 个系统的 EVA-A pass@1、pass@k、pass^k，数据取自论文表 4</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="417" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340.0" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">EVA-A：峰值与可靠性之间的差距（k=5，按 pass^k 排序）</text>
+<line x1="270.0" y1="52" x2="270.0" y2="348" stroke="#E5E3DA"/>
+<text x="270.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0.0</text>
+<line x1="346.0" y1="52" x2="346.0" y2="348" stroke="#E5E3DA"/>
+<text x="346.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0.2</text>
+<line x1="422.0" y1="52" x2="422.0" y2="348" stroke="#E5E3DA"/>
+<text x="422.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0.4</text>
+<line x1="498.0" y1="52" x2="498.0" y2="348" stroke="#E5E3DA"/>
+<text x="498.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0.6</text>
+<line x1="574.0" y1="52" x2="574.0" y2="348" stroke="#E5E3DA"/>
+<text x="574.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0.8</text>
+<line x1="650.0" y1="52" x2="650.0" y2="348" stroke="#E5E3DA"/>
+<text x="650.0" y="364" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">1.0</text>
+<circle cx="40" cy="46" r="5" fill="#993C1D"/><text x="50" y="50" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">pass^k（可靠）</text>
+<circle cx="230" cy="46" r="5" fill="#534AB7"/><text x="240" y="50" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">pass@1（平均）</text>
+<circle cx="420" cy="46" r="5" fill="#0F6E56"/><text x="430" y="50" font-size="11" fill="#5F5E5A" text-anchor="start" font-weight="normal">pass@k（峰值）</text>
+<text x="260" y="80" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">GPT-Realtime-1.5</text>
+<line x1="377.53999999999996" y1="76" x2="539.8" y2="76" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="377.53999999999996" cy="76" r="5" fill="#993C1D"/><circle cx="447.46000000000004" cy="76" r="5" fill="#534AB7"/><circle cx="539.8" cy="76" r="5" fill="#0F6E56"/>
+<text x="260" y="104" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Scribe + Gemini-3-Flash + Conv. v3</text>
+<line x1="372.22" y1="100" x2="547.4" y2="100" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="372.22" cy="100" r="5" fill="#993C1D"/><circle cx="456.2" cy="100" r="5" fill="#534AB7"/><circle cx="547.4" cy="100" r="5" fill="#0F6E56"/>
+<text x="260" y="128" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Nova-3 + GPT-5.4 + Sonic 3</text>
+<line x1="352.46" y1="124" x2="577.4200000000001" y2="124" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="352.46" cy="124" r="5" fill="#993C1D"/><circle cx="461.52" cy="124" r="5" fill="#534AB7"/><circle cx="577.4200000000001" cy="124" r="5" fill="#0F6E56"/>
+<text x="260" y="152" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Parakeet + Gemma-4-31B + Kokoro</text>
+<line x1="334.22" y1="148" x2="554.24" y2="148" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="334.22" cy="148" r="5" fill="#993C1D"/><circle cx="423.14" cy="148" r="5" fill="#534AB7"/><circle cx="554.24" cy="148" r="5" fill="#0F6E56"/>
+<text x="260" y="176" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Gemini-3-Flash + 3.1-Flash-TTS</text>
+<line x1="330.04" y1="172" x2="578.56" y2="172" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="330.04" cy="172" r="5" fill="#993C1D"/><circle cx="433.78" cy="172" r="5" fill="#534AB7"/><circle cx="578.56" cy="172" r="5" fill="#0F6E56"/>
+<text x="260" y="200" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Gemini-3.1-Flash-Live</text>
+<line x1="320.16" y1="196" x2="479.76" y2="196" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="320.16" cy="196" r="5" fill="#993C1D"/><circle cx="380.96" cy="196" r="5" fill="#534AB7"/><circle cx="479.76" cy="196" r="5" fill="#0F6E56"/>
+<text x="260" y="224" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Ultravox-Realtime</text>
+<line x1="311.04" y1="220" x2="461.14" y2="220" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="311.04" cy="220" r="5" fill="#993C1D"/><circle cx="372.6" cy="220" r="5" fill="#534AB7"/><circle cx="461.14" cy="220" r="5" fill="#0F6E56"/>
+<text x="260" y="248" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Nova-3 + GPT-5.4-mini + Aura-2</text>
+<line x1="293.56" y1="244" x2="440.24" y2="244" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="293.56" cy="244" r="5" fill="#993C1D"/><circle cx="349.8" cy="244" r="5" fill="#534AB7"/><circle cx="440.24" cy="244" r="5" fill="#0F6E56"/>
+<text x="260" y="272" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Cohere + Gemma-4-26B + Voxtral</text>
+<line x1="292.8" y1="268" x2="428.08" y2="268" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="292.8" cy="268" r="5" fill="#993C1D"/><circle cx="348.65999999999997" cy="268" r="5" fill="#534AB7"/><circle cx="428.08" cy="268" r="5" fill="#0F6E56"/>
+<text x="260" y="296" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">GPT-Realtime-mini</text>
+<line x1="292.42" y1="292" x2="390.84000000000003" y2="292" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="292.42" cy="292" r="5" fill="#993C1D"/><circle cx="331.94" cy="292" r="5" fill="#534AB7"/><circle cx="390.84000000000003" cy="292" r="5" fill="#0F6E56"/>
+<text x="260" y="320" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Ink-whisper + Haiku-4.5 + Sonic 3</text>
+<line x1="291.66" y1="316" x2="466.08000000000004" y2="316" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="291.66" cy="316" r="5" fill="#993C1D"/><circle cx="358.92" cy="316" r="5" fill="#534AB7"/><circle cx="466.08000000000004" cy="316" r="5" fill="#0F6E56"/>
+<text x="260" y="344" font-size="11" fill="#2C2C2A" text-anchor="end" font-weight="normal">Whisper + Qwen3.5-27B + Voxtral</text>
+<line x1="282.54" y1="340" x2="466.84000000000003" y2="340" stroke="#B4B2A9" stroke-width="3"/>
+<circle cx="282.54" cy="340" r="5" fill="#993C1D"/><circle cx="347.9" cy="340" r="5" fill="#534AB7"/><circle cx="466.84000000000003" cy="340" r="5" fill="#0F6E56"/>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" width="680" height="380" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>EVA-Bench 评测流程（据论文图 1 重绘）</title><desc>场景、用户模拟器与被测语音 Agent 通过音频对话，经模拟器校验后打分</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="379" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340.0" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">EVA-Bench 评测流程（据论文图 1 重绘）</text>
+<rect x="20" y="56" width="150" height="78" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="95.0" y="83.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">场景</text>
+<text x="95.0" y="99.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">用户目标+决策树</text>
+<text x="95.0" y="115.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">人设、数据库、标准答案</text>
+<rect x="215" y="56" width="130" height="78" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="280.0" y="91.0" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">用户模拟器</text>
+<text x="280.0" y="107.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">（语音级联管线）</text>
+<rect x="390" y="56" width="130" height="78" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="455.0" y="91.0" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">被测语音 Agent</text>
+<text x="455.0" y="107.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">级联 / 混合 / S2S</text>
+<rect x="545" y="56" width="115" height="78" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="602.5" y="91.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">工具执行器</text>
+<text x="602.5" y="107.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">确定性执行</text>
+<line x1="170" y1="95" x2="213" y2="95" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="347" y1="84" x2="388" y2="84" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="388" y1="106" x2="347" y2="106" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="367" y="74" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">音频</text>
+<line x1="520" y1="95" x2="543" y2="95" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="215" y="170" width="305" height="60" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="367.5" y="196.0" font-size="12" fill="#993C1D" text-anchor="middle" font-weight="bold">模拟器校验（打分前）</text>
+<text x="367.5" y="212.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">用户行为是否偏离目标 · 用户语音是否说对</text>
+<line x1="367" y1="134" x2="367" y2="168" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="170" width="150" height="60" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="95.0" y="196.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">重新生成</text>
+<text x="95.0" y="212.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">校验失败则重跑</text>
+<line x1="213" y1="200" x2="172" y2="200" stroke="#888780" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a)"/>
+<text x="192" y="192" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">失败</text>
+<rect x="60" y="268" width="255" height="66" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="187.5" y="297.0" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="bold">EVA-A 准确度</text>
+<text x="187.5" y="313.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">任务完成 · 忠实度 · 语音保真</text>
+<rect x="340" y="268" width="255" height="66" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="467.5" y="297.0" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="bold">EVA-X 体验</text>
+<text x="467.5" y="313.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">轮次时机 · 推进 · 简洁</text>
+<line x1="300" y1="230" x2="200" y2="266" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="440" y1="230" x2="460" y2="266" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="535" y="205" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">通过</text>
+<text x="340" y="358" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">每段对话在每个维度上记为通过/不通过，再汇总为 pass@1 / pass@k / pass^k</text>
+</svg>
