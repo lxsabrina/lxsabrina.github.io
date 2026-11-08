@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" width="680" height="360" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>agent-desktop 的分层与观察-行动-验证循环（示意图）</title><desc>agent-desktop 的分层与观察-行动-验证循环（示意图）</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="359" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340.0" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">agent-desktop 的分层与观察-行动-验证循环（示意图）</text>
+<rect x="20" y="52" width="640" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="340.0" y="80.0" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">调用方 Agent（循环在这里，agent-desktop 里没有模型）</text>
+<text x="340.0" y="96.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">snapshot → 选 ref → click / type → 再 snapshot 验证</text>
+<rect x="20" y="150" width="200" height="56" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="120.0" y="182.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">CLI（每条命令一个 JSON）</text>
+<rect x="240" y="150" width="200" height="56" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="340.0" y="182.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">MCP 服务（stdio）</text>
+<rect x="460" y="150" width="200" height="56" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="560.0" y="182.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">C 库（进程内）</text>
+<line x1="120" y1="116" x2="120" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="340" y1="116" x2="340" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="560" y1="116" x2="560" y2="148" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="20" y="240" width="640" height="44" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340.0" y="266.0" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="bold">agent-desktop-core：快照、ref 解析、可操作性检查、投递语义</text>
+<line x1="340" y1="206" x2="340" y2="238" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="340" y1="206" x2="340" y2="238" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="340" y="302" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">PlatformAdapter（编译时选定一个平台）</text>
+<rect x="20" y="312" width="200" height="38" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="120.0" y="335.0" font-size="12" fill="#993C1D" text-anchor="middle" font-weight="bold">macOS：AX API</text>
+<rect x="240" y="312" width="200" height="38" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="340.0" y="335.0" font-size="12" fill="#993C1D" text-anchor="middle" font-weight="bold">Windows：UI Automation</text>
+<rect x="460" y="312" width="200" height="38" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="560.0" y="335.0" font-size="12" fill="#993C1D" text-anchor="middle" font-weight="bold">Linux：AT-SPI</text>
+</svg>

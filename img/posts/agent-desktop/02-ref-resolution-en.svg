@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="680" height="430" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>How a ref is resolved: refuse rather than guess (a diagram built from the docs)</title><desc>How a ref is resolved: refuse rather than guess (a diagram built from the docs)</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="429" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340.0" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">How a ref is resolved: refuse rather than guess (a diagram built from the docs)</text>
+<rect x="240" y="48" width="200" height="40" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="340.0" y="64.0" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">Saved ref</text>
+<text x="340.0" y="80.0" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">@snapshot:eN</text>
+<rect x="205" y="112" width="270" height="48" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="340.0" y="140.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">At capture: whole window read, unique?</text>
+<line x1="340" y1="88" x2="340" y2="110" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="500" y="112" width="160" height="48" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="580.0" y="132.5" font-size="11" fill="#993C1D" text-anchor="middle" font-weight="bold">AMBIGUOUS_TARGET</text>
+<text x="580.0" y="147.5" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">identity_not_unique</text>
+<line x1="475" y1="136" x2="498" y2="136" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="487" y="128" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">no</text>
+<line x1="340" y1="160" x2="340" y2="196" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="352" y="182" font-size="10" fill="#5F5E5A" text-anchor="start" font-weight="normal">yes</text>
+<rect x="185" y="198" width="310" height="48" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="340.0" y="226.0" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Recount live: how many match role + stable fields?</text>
+<rect x="20" y="298" width="150" height="60" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="95.0" y="317.0" font-size="11" fill="#993C1D" text-anchor="middle" font-weight="bold">0 matches</text>
+<text x="95.0" y="332.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">STALE_REF</text>
+<text x="95.0" y="347.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">saved_ref_absent</text>
+<rect x="195" y="298" width="150" height="60" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="270.0" y="317.0" font-size="11" fill="#0F6E56" text-anchor="middle" font-weight="bold">1 match</text>
+<text x="270.0" y="332.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">hand to adapter</text>
+<text x="270.0" y="347.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">then act</text>
+<rect x="370" y="298" width="150" height="60" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="445.0" y="317.0" font-size="11" fill="#993C1D" text-anchor="middle" font-weight="bold">2+ matches</text>
+<text x="445.0" y="332.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">AMBIGUOUS_TARGET</text>
+<text x="445.0" y="347.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">saved_ref_ambiguous</text>
+<rect x="540" y="298" width="125" height="60" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="602.5" y="317.0" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="bold">a field unreadable</text>
+<text x="602.5" y="332.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">TIMEOUT</text>
+<text x="602.5" y="347.0" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">retryable</text>
+<line x1="340" y1="246" x2="95" y2="296" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="340" y1="246" x2="270" y2="296" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="340" y1="246" x2="445" y2="296" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="340" y1="246" x2="602" y2="296" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="340" y="392" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">Every refusal above happens before any input is sent to the app (disposition: not_delivered)</text>
+<text x="340" y="412" font-size="10" fill="#5F5E5A" text-anchor="middle" font-weight="normal">macOS has a second path: the ref carries the element's own address, accepted only while process, role and identifier still match</text>
+</svg>
