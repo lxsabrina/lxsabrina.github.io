@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="680" height="400" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>One ITR step: retrieve, select within budget, assemble, fall back</title><desc>One ITR step: retrieve, select within budget, assemble, fall back</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="399" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">One ITR step: retrieve, select within budget, assemble, fall back</text>
+<rect x="240" y="48" width="200" height="44" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="340.0" y="66.2" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Step query q_t</text>
+<text x="340.0" y="82.2" font-size="12" fill="#5F5E5A" text-anchor="middle" font-weight="normal">task state + user request</text>
+<line x1="300" y1="92" x2="170" y2="118" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="380" y1="92" x2="510" y2="118" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="50" y="118" width="240" height="48" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="170.0" y="138.2" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">Instruction retrieval</text>
+<text x="170.0" y="154.2" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="normal">dense + BM25 → re-rank</text>
+<rect x="390" y="118" width="240" height="48" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="510.0" y="138.2" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="bold">Tool retrieval</text>
+<text x="510.0" y="154.2" font-size="12" fill="#534AB7" text-anchor="middle" font-weight="normal">dense + BM25 → re-rank</text>
+<line x1="170" y1="166" x2="300" y2="192" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="510" y1="166" x2="380" y2="192" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="170" y="192" width="340" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340.0" y="212.2" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="bold">Greedy selection in budget</text>
+<text x="340.0" y="228.2" font-size="12" fill="#0F6E56" text-anchor="middle" font-weight="normal">pick K_A instructions, K_B tools by score/token</text>
+<line x1="340" y1="240" x2="340" y2="262" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="60" y="262" width="400" height="48" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="260.0" y="282.2" font-size="12" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Assemble the step prompt</text>
+<text x="260.0" y="298.2" font-size="12" fill="#5F5E5A" text-anchor="middle" font-weight="normal">safety overlay (always on) + instructions + tools + routing note</text>
+<line x1="260" y1="310" x2="260" y2="330" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="110" y="330" width="300" height="40" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="260.0" y="346.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="bold">LLM sees only the selected tools</text>
+<text x="260.0" y="361.4" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">and self-checks: "are the tools enough?"</text>
+<line x1="410" y1="350" x2="500" y2="350" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="500" y="326" width="160" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="580.0" y="353.9" font-size="11" fill="#0F6E56" text-anchor="middle" font-weight="bold">≥ τ: proceed</text>
+<rect x="500" y="252" width="160" height="56" rx="8" fill="#FAECE7" stroke="#993C1D"/>
+<text x="580.0" y="276.4" font-size="11" fill="#993C1D" text-anchor="middle" font-weight="bold">Below τ: discovery sub-step</text>
+<text x="580.0" y="291.4" font-size="11" fill="#993C1D" text-anchor="middle" font-weight="normal">widen K_B or show a catalog</text>
+<path d="M580,326 L580,310" stroke="#888780" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+<line x1="500" y1="280" x2="460" y2="286" stroke="#888780" stroke-width="1.5" marker-end="url(#a)"/>
+</svg>

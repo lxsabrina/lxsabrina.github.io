@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="680" height="420" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>三种给 Agent 构造上下文的方式</title><desc>三种给 Agent 构造上下文的方式</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="419" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="30" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">三种给 Agent 构造上下文的方式</text>
+<rect x="122.0" y="48" width="148" height="34" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="196.0" y="69.5" font-size="13" fill="#2C2C2A" text-anchor="middle" font-weight="bold">整体注入</text>
+<rect x="284.0" y="48" width="148" height="34" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="358.0" y="69.5" font-size="13" fill="#534AB7" text-anchor="middle" font-weight="bold">检索式选择</text>
+<rect x="446.0" y="48" width="148" height="34" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="520.0" y="69.5" font-size="13" fill="#0F6E56" text-anchor="middle" font-weight="bold">规则匹配</text>
+<text x="14" y="132" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">谁来决定</text>
+<rect x="122.0" y="94" width="148" height="68" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="196.0" y="131.8" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">无人：模型自己看全部</text>
+<rect x="284.0" y="94" width="148" height="68" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="358.0" y="124.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">检索器 + 重排 + </text>
+<text x="358.0" y="139.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">预算；模型自评兜底</text>
+<rect x="446.0" y="94" width="148" height="68" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="520.0" y="124.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">规则条件 + 分层判定</text>
+<text x="520.0" y="139.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">；关系决定优先级</text>
+<text x="14" y="210" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">每步成本</text>
+<rect x="122.0" y="172" width="148" height="68" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="196.0" y="209.8" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">静态 token 最高</text>
+<rect x="284.0" y="172" width="148" height="68" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="358.0" y="202.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">检索开销 + 小提示；</text>
+<text x="358.0" y="217.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">兜底时多一次调用</text>
+<rect x="446.0" y="172" width="148" height="68" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="520.0" y="202.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">只对需要结论的规则调模</text>
+<text x="520.0" y="217.3" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">型</text>
+<text x="14" y="288" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">典型失效</text>
+<rect x="122.0" y="250" width="148" height="68" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="196.0" y="280.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">注意力稀释、选错工具、</text>
+<text x="196.0" y="295.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">贵</text>
+<rect x="284.0" y="250" width="148" height="68" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="358.0" y="280.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">漏选（藏起所需项）、检</text>
+<text x="358.0" y="295.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">索漂移、相关指令被拆开</text>
+<rect x="446.0" y="250" width="148" height="68" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="520.0" y="287.9" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">条件判错；实现复杂</text>
+<text x="14" y="366" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">适用前提</text>
+<rect x="122.0" y="328" width="148" height="68" rx="8" fill="#F1EFE8" stroke="#888780"/>
+<text x="196.0" y="365.9" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">指令/工具少、循环短</text>
+<rect x="284.0" y="328" width="148" height="68" rx="8" fill="#EEEDFE" stroke="#534AB7"/>
+<text x="358.0" y="358.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">指令可模块化、目录大、</text>
+<text x="358.0" y="373.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">循环长</text>
+<rect x="446.0" y="328" width="148" height="68" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="520.0" y="358.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">有优先级/依赖的合规类</text>
+<text x="520.0" y="373.4" font-size="11" fill="#2C2C2A" text-anchor="middle" font-weight="normal">规则</text>
+</svg>
