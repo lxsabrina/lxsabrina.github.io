@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 408" width="680" height="408" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif">
+<title>Exact-match success on ToolBench G3 test (%)</title><desc>Redrawn from the paper's Table 1 and Figure 5: prompted large-model baselines and Qwen3-8B ablations</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888780"/></marker></defs>
+<rect x="0.5" y="0.5" width="679" height="407" rx="12" fill="#FFFFFF" stroke="#D3D1C7"/>
+<text x="340" y="34" font-size="16" fill="#2C2C2A" text-anchor="middle" font-weight="bold">Exact-match success on ToolBench G3 test (%)</text>
+<line x1="330.0" y1="58" x2="330.0" y2="352" stroke="#E6E4DC"/>
+<text x="330.0" y="368" font-size="10.5" fill="#5F5E5A" text-anchor="middle" font-weight="normal">0</text>
+<line x1="394.0" y1="58" x2="394.0" y2="352" stroke="#E6E4DC"/>
+<text x="394.0" y="368" font-size="10.5" fill="#5F5E5A" text-anchor="middle" font-weight="normal">10</text>
+<line x1="458.0" y1="58" x2="458.0" y2="352" stroke="#E6E4DC"/>
+<text x="458.0" y="368" font-size="10.5" fill="#5F5E5A" text-anchor="middle" font-weight="normal">20</text>
+<line x1="522.0" y1="58" x2="522.0" y2="352" stroke="#E6E4DC"/>
+<text x="522.0" y="368" font-size="10.5" fill="#5F5E5A" text-anchor="middle" font-weight="normal">30</text>
+<line x1="586.0" y1="58" x2="586.0" y2="352" stroke="#E6E4DC"/>
+<text x="586.0" y="368" font-size="10.5" fill="#5F5E5A" text-anchor="middle" font-weight="normal">40</text>
+<text x="24" y="80" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">Prompted Llama-4-Maverick (402B total, 17B active)</text>
+<text x="320" y="104" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">+ paper's workflow</text>
+<rect x="330" y="93" width="64.64" height="15" rx="3" fill="#888780"/>
+<text x="400.64" y="105" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">10.1</text>
+<text x="320" y="128" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">+ ReAct (up to 5 calls per substep)</text>
+<rect x="330" y="117" width="181.76" height="15" rx="3" fill="#888780"/>
+<text x="517.76" y="129" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">28.4</text>
+<text x="320" y="152" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">+ Search-R1 style</text>
+<rect x="330" y="141" width="195.84000000000003" height="15" rx="3" fill="#888780"/>
+<text x="531.84" y="153" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">30.6</text>
+<text x="24" y="176" font-size="12" fill="#2C2C2A" text-anchor="start" font-weight="bold">Qwen3-8B and ablations (same workflow)</text>
+<text x="320" y="200" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">untrained (thinking off)</text>
+<rect x="330" y="189" width="131.20000000000002" height="15" rx="3" fill="#888780"/>
+<text x="467.20000000000005" y="201" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">20.5</text>
+<text x="320" y="224" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">SFT+RL, Maverick as planner</text>
+<rect x="330" y="213" width="110.08" height="15" rx="3" fill="#888780"/>
+<text x="446.08" y="225" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">17.2</text>
+<text x="320" y="248" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">SFT+RL, untrained planner</text>
+<rect x="330" y="237" width="176.64000000000001" height="15" rx="3" fill="#888780"/>
+<text x="512.64" y="249" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">27.6</text>
+<text x="320" y="272" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">SFT+RL, BM25 top-1 as selector</text>
+<rect x="330" y="261" width="183.04000000000002" height="15" rx="3" fill="#888780"/>
+<text x="519.04" y="273" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">28.6</text>
+<text x="320" y="296" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">RL only</text>
+<rect x="330" y="285" width="228.48000000000002" height="15" rx="3" fill="#534AB7"/>
+<text x="564.48" y="297" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">35.7</text>
+<text x="320" y="320" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">SFT only</text>
+<rect x="330" y="309" width="231.68000000000004" height="15" rx="3" fill="#534AB7"/>
+<text x="567.6800000000001" y="321" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">36.2</text>
+<text x="320" y="344" font-size="11.5" fill="#2C2C2A" text-anchor="end" font-weight="normal">SFT+RL (full)</text>
+<rect x="330" y="333" width="265.6" height="15" rx="3" fill="#534AB7"/>
+<text x="601.6" y="345" font-size="11" fill="#2C2C2A" text-anchor="start" font-weight="normal">41.5</text>
+<text x="340" y="392" font-size="11" fill="#5F5E5A" text-anchor="middle" font-weight="normal">Purple: trained Qwen3-8B variants; gray: untrained or swapped-in parts. Single run, greedy decoding</text>
+</svg>
